@@ -1,0 +1,231 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:12345@localhost:5432/template?schema=public" 
+}
+
+
+model shop_info {
+   id Int  @id @default(autoincrement())
+   name String?
+   logo String?
+   mail String?
+   phone String?
+   address String?
+   description String? 
+}
+
+model social {
+   id Int  @id @default(autoincrement())
+   name String?
+   link String?
+
+}
+
+model contact {
+   id Int  @id @default(autoincrement())
+   name String?
+   subject String?
+   mail String?
+   message String?
+   phone String?
+}
+
+model service {
+   id Int  @id @default(autoincrement())
+   icon String?
+   name String?
+   description String?
+}
+
+model role {
+   id Int  @id @default(autoincrement())
+   possion String?
+   user users[]
+}
+
+model users {
+   id Int  @id @default(autoincrement())
+   avata String?
+   fname String?
+   lname String?
+   mail String?
+   phone String?
+   address1 String?
+   address2 String?
+   pass String?
+   postal String?
+   contry String?
+   state String?
+   company String?
+   role role @relation(fields: [roleid], references: [id])
+   roleid Int
+   comment comments[]
+   blog blogs[]
+   review reviews[]
+   
+   order orders[]
+
+}
+
+model comments {
+   id Int  @id @default(autoincrement())
+   content String?
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   blogg blogs @relation(fields: [blogid], references: [id])
+   blogid Int
+}
+
+model reviews {
+   id Int  @id @default(autoincrement())
+   content String?
+   evaluate String?
+   user users@relation(fields: [userid], references: [id])
+   userid Int
+   product products @relation(fields: [productid], references: [id])
+   productid Int
+
+}
+
+model orders {
+   id Int  @id @default(autoincrement())
+   userr users @relation(fields: [userrid], references: [id])
+   userrid Int
+   products order_product[]
+}
+
+model blogs {
+   id Int  @id @default(autoincrement())
+   image String?
+   time String?
+   description1 String?
+   description2 String?
+   creater String?
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   comment comments[]
+   categories blogs_categories[]
+   tags blogs_tags[]
+}
+
+model blogs_categories {
+  blog blogs @relation(fields: [blogid], references:[id])
+  blogid Int
+  categorie categories @relation(fields:[categorieid], references:[id])
+  categorieid Int
+
+  @@id([blogid, categorieid])
+}
+
+model categories {
+   id Int  @id @default(autoincrement())
+   name String?
+   blogs blogs_categories[]
+}
+
+model tags {
+   id Int  @id @default(autoincrement())
+   name String?
+   blogs blogs_tags[]
+}
+
+model blogs_tags {
+    blog blogs @relation(fields: [blogid], references: [id])
+    blogid Int
+    tag tags @relation(fields: [tagid],references: [id])
+    tagid Int
+    
+    @@id([blogid,tagid])
+}
+
+model products {
+    id Int  @id @default(autoincrement())
+    name String?
+    price String?
+    description String?
+    image image_product[]
+    classify user_class @relation(fields: [classifid], references: [id])
+    classifid Int
+    discount discounts @relation(fields: [discountid], references: [id])
+    discountid Int
+    orders order_product[]
+    color color_product[]
+    size size_product[]
+    onsale Int
+    view Int
+    
+    
+    review reviews[]
+}
+
+model image_product {
+    id Int  @id @default(autoincrement())
+    link String?
+    product products @relation(fields: [productid], references: [id])
+    productid Int
+}
+
+model user_class {
+    id Int  @id @default(autoincrement())
+    name String?
+    product products[]
+
+}
+
+model discounts {
+    id Int  @id @default(autoincrement())
+    name String?
+    product products[]
+}
+
+model size_product {
+  product products @relation(fields: [productid], references: [id])
+  productid Int
+   size size @relation(fields: [sizeid], references: [id])
+   sizeid Int
+
+   @@id([productid, sizeid])
+}
+
+model size {
+     id Int  @id @default(autoincrement())
+     name String?
+     products size_product[]
+
+}
+
+model color_product {
+  product products @relation(fields: [productid], references: [id])
+  productid Int
+   color color @relation(fields: [colorid], references: [id])
+   colorid Int
+
+   @@id([productid,colorid])
+}
+
+model color {
+     id Int  @id @default(autoincrement())
+     name String?
+     products color_product[]
+
+}
+
+model order_product {
+  order orders @relation(fields: [orderid], references: [id])
+  orderid Int
+  product products @relation (fields: [productid], references: [id])
+  productid Int
+  quanlity String?
+
+  @@id([orderid,productid])
+}
