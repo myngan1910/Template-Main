@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-router.get('/', serviceController.getService)
+router.get('/service', serviceController.getService)
 router.get('/create-service', serviceController.getCreateService)
 router.post('/createser',upload.single('icon'), serviceController.postCreateService)
 router.get('/ser/:ID', serviceController.getDetailService)

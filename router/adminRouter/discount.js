@@ -4,7 +4,7 @@ const disController = require('../../controller/adminController/discount.js')
 
 
 
-router.get('/',disController.getDiscount);
+router.get('/discount',disController.getDiscount);
 router.get('/create-dis',disController.getCreateDiscount);
 router.post('/createdis', disController.postCreateDiscount);
 router.get('/diss/:ID',disController.getdetailDiscount);

@@ -3,7 +3,7 @@ const router = express.Router();
 const socialController = require('../../controller/adminController/social.js')
 
 
-router.get('/', socialController.getSocial)
+router.get('/social', socialController.getSocial)
 router.get('/create-so',  socialController.getCreateSocial)
 router.post('/createsocial', socialController.postCreSocial);
 router.get('/so/:ID',socialController.getdetailSocial);

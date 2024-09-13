@@ -4,7 +4,7 @@ const contactController = require('../../controller/adminController/contact.js')
 
 
 
-router.get('/',contactController.getCtc);
+router.get('/contact',contactController.getCtc);
 router.post('/createContact',contactController.postCreateCtc);
 router.get('/ctc/:ID',contactController.getdetailCtc);
 router.get('/ctcdele/:ID',contactController.getdeleCtc);

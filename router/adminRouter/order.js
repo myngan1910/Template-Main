@@ -4,7 +4,7 @@ const orderController = require('../../controller/adminController/order.js')
 
 
 
-router.get('/',orderController.getOrder);
+router.get('/order',orderController.getOrder);
 router.get('/create-order',orderController.getCreateOrder);
 router.post('/createod',orderController.postCreateOrder);
 router.get('/od/:ID',orderController.getdetailOrder);

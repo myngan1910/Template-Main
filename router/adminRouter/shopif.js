@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-router.get('/',shopController.getShopInfo)
+router.get('/shop',shopController.getShopInfo)
 router.get('/create-shop', shopController.getCreateShop)
 router.post('/createshop',upload.single('logo'), shopController.postCreateShop)
 router.get('/shopp/:ID', shopController.getDetailShop)

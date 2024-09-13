@@ -3,7 +3,7 @@ const router = express.Router();
 const colorController = require('../../controller/adminController/color')
 
 
-router.get('/',colorController.getColor);
+router.get('/color',colorController.getColor);
 router.get('/create-color',colorController.getCreateColor);
 router.post('/createcolor', colorController.postCreateColor);
 router.get('/co/:ID',colorController.getdetailColor);

@@ -1,21 +1,29 @@
 const express = require('express')
 const router = express.Router();
-const userController = require('../controller/userController.js')
+
+const shopRouter = require('../router/userRouter/shop.js')
+const cartRouter = require('../router/userRouter/cart.js')
+const blogRouter = require('../router/userRouter/blog.js')
+const contactRouter = require('../router/userRouter/contact.js')
+const checkoutRouter = require('../router/userRouter/checkout.js')
+const productRouter = require('../router/userRouter/product.js')
+const loginRouter = require('../router/userRouter/login.js')
+const registerRouter = require('../router/userRouter/register.js')
 
 
+router.use('/', shopRouter);
 
-router.get('/', userController.getEShop);
-router.get('/cart', userController.getCart);
-router.get('/blog',userController.getblog);
-router.get('/contact',userController.getContact);
-router.get('/checkout',userController.getCheck);
-router.get('/product',userController.getProduct);
-router.get('/login',userController.getLogin);
+router.use('/cart', cartRouter);
+router.use('/blog',blogRouter);
+router.use('/contact',contactRouter);
+router.use('/checkout',checkoutRouter);
+router.use('/product',productRouter);
+router.use('/login',loginRouter);
 
 
 //REGISTER
-router.get('/register',userController.getRegister);
-router.post('/register', userController.postRegister)
+router.use('/register',registerRouter);
+
 
 
 

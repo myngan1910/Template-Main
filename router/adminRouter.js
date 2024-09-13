@@ -21,24 +21,24 @@ const reviewRouter = require('../router/adminRouter/review.js')
 
 
 router.get('/', adminController.getAdmin)
-router.use('/product', productRouter)
-router.use('/shop', shopRouter)
-router.use('/user',userRouter);
-router.use('/social', socialRouter)
-router.use('/role',roleRouter);
-router.use('/service', serviceRouter)
-router.use('/contact',contactRouter)
-router.use('/categories',cateRouter);
-router.use('/tag',tagRouter);
-router.use('/color',colorRouter);
-router.use('/size',sizeRouter);
-router.use('/discount',disRouter);
-router.use('/user-class',user_classRouter);
-router.use('/blog',blogRouter);
-router.use('/order',orderRouter);
-router.use('/img-pro',img_proRouter);
+router.use('/', productRouter)
+router.use('/', shopRouter)
+router.use('/',userRouter);
+router.use('/', socialRouter)
+router.use('/',roleRouter);
+router.use('/', serviceRouter)
+router.use('/',contactRouter)
+router.use('/',cateRouter);
+router.use('/',tagRouter);
+router.use('/',colorRouter);
+router.use('/',sizeRouter);
+router.use('/',disRouter);
+router.use('/',user_classRouter);
+router.use('/',blogRouter);
+router.use('/',orderRouter);
+router.use('/',img_proRouter);
 
-router.use('/review',reviewRouter);
+router.use('/',reviewRouter);
 
 
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const img_proController = require('../../controller/adminController/img_pro.js')
 
 
-router.get('/',img_proController.getImg);
+router.get('/img-pro',img_proController.getImg);
 router.get('/create-img',img_proController.getCreateImg);
 router.post('/createimg',img_proController.postCreateImg);
 router.get('/ima/:ID',img_proController.getdetailImg);
