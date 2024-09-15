@@ -3,6 +3,8 @@ const app = express()
 const userModel = require('../../model/adminModel/user.js')
 const roleModel = require('../../model/adminModel/role.js')
 const adminModel = require('../../model/adminModel.js')
+const bcrypt = require('bcrypt')
+
 module.exports = {
      // USER
      getUser: async(req,res) =>{
@@ -24,7 +26,9 @@ module.exports = {
          const phone = req.body.phone;
          const add1 = req.body.address1;
          const add2 = req.body.address2;
-         const pass = req.body.pass;
+         const pass1 = req.body.pass;
+         const pass =  bcrypt.hashSync(pass1,5)
+
          const pos = req.body.postal;
          const state = req.body.state;
          const con = req.body.contry;
@@ -56,14 +60,15 @@ module.exports = {
         const genId = parseInt(req.params.ID);
         const image = req.file;
         const data = await  userModel.getdetailUser(genId);
-        const avata = await  userModel.checkimg(image,data)
+        const avata = await  adminModel.checkimg(image,data)
         const fname = req.body.fname;
          const lname = req.body.lname;
          const mail = req.body.mail;
          const phone = req.body.phone;
          const add1 = req.body.address1;
          const add2 = req.body.address2;
-         const pass = req.body.pass;
+         const pass1 = req.body.pass;
+         const pass =  bcrypt.hashSync(pass1,5)
          const pos = req.body.postal;
          const state = req.body.state;
          const con = req.body.contry;

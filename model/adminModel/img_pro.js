@@ -7,7 +7,7 @@ module.exports = {
         const data = await client.image_product.findMany({
             select: {
                 id: true,
-              link: true,
+              image: true,
                productid: true,
                product: {
                 select: {
@@ -38,10 +38,10 @@ module.exports = {
 
        return data;
     },
-    postCreateImg : async(link,pro) => {
+    postCreateImg : async(img,pro) => {
     const create =await client.image_product.create({
         data: {
-            link: link,
+            image: img,
             productid: pro
         }
     })
@@ -57,21 +57,22 @@ module.exports = {
     },
     getdeleImg: async(genId) => {
         
-        const data = await client.products.deleteMany({
-            where: {
-                image: genId
-            }
+        const dele1 = await client.image_product.deleteMany({
+            where: { productid: genId }
         });
-      const dele1 = await client.image_product.deleteMany({where: {id:genId}});
-      
-       return {data,dele1};
     
+       
+        const data = await client.products.deleteMany({
+            where: { id: genId }
+        });
+    
+        return { data, dele1 };
     },
-    postImg: async(genId,link, pro) => {
+    postImg: async(genId,img, pro) => {
     const update = await client.image_product.update({
         where: {id:genId},
         data: {
-           link: link,
+           image: img,
            productid: pro
         }
     })

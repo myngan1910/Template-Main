@@ -23,6 +23,9 @@ module.exports = {
                 },
                 onsale: true,
                 view: true
+            },
+            orderBy: {
+                id: 'asc'
             }
         });
      
@@ -38,12 +41,31 @@ module.exports = {
             description: des,
             classifid: clas,
             discountid: dis,
-            onsale: ons,
-            view: view
+            onsale: 0,
+            view: 0
         }
     })
+    const product = await client.products.findFirst({
+       
+        where: {
+           
+            name: name,
+            price: price,
+            description: des,
+            classifid: clas,
+            discountid: dis
+           
+           
+        },
+        orderBy: {
+        id: 'desc'
+        },
+        select: {
+            id:true
+        }
+    });
     
-    const productid = create.id;
+    const productid = product.id;
     const size_product = await client.size_product.create({
       data: {
         productid: productid,

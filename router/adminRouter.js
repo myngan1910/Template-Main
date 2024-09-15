@@ -18,6 +18,7 @@ const blogRouter = require('../router/adminRouter/blog.js')
 const orderRouter = require('../router/adminRouter/order.js')
 const img_proRouter = require('../router/adminRouter/img_product.js')
 const reviewRouter = require('../router/adminRouter/review.js')
+const commentRouter = require('../router/adminRouter/comment.js')
 
 
 router.get('/', adminController.getAdmin)
@@ -37,8 +38,9 @@ router.use('/',user_classRouter);
 router.use('/',blogRouter);
 router.use('/',orderRouter);
 router.use('/',img_proRouter);
-
+router.use('/', commentRouter)
 router.use('/',reviewRouter);
+
 
 
 

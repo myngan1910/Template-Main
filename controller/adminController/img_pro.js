@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const img_proModel = require('../../model/adminModel/img_pro.js')
 const productModel = require('../../model/adminModel/product.js')
+const adminModel = require('../../model/adminModel.js')
 module.exports = {
      // IMG-PRODUCT
      getImg: async(req,res) =>{
@@ -14,10 +15,12 @@ module.exports = {
         res.render('./image_product/imgcre', {productid: data} )
     },
     postCreateImg:  async(req,res) => {
-         const link = req.body.link;
+        const image = req.file ;
+        const data = [];
+        const img = await adminModel.checkimg(image,data)
         const pro = parseInt(req.body.productid);
        
-        const createPro =  await img_proModel.postCreateImg(link, pro);
+        const createPro =  await img_proModel.postCreateImg(img, pro);
         return res.redirect(`/admin/img-pro`)
       
     
@@ -40,9 +43,11 @@ module.exports = {
     },
     postImg: async(req,res) => {
         const genId = parseInt(req.params.ID);
-        const link = req.body.link;
+        const image = req.file;
+        const data = await img_proModel.getdetailImg(genId);
+        const img = await adminModel.checkimg(image,data)
         const pro = parseInt(req.body.productid);
-        const viewPro =  await img_proModel.postImg(genId,link, pro)
+        const viewPro =  await img_proModel.postImg(genId,img, pro)
         return res.redirect(`/admin/img-pro`)
     },
 }

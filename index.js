@@ -4,6 +4,8 @@ const app = express()
 var bodyParser = require('body-parser')
 const { userInfo } = require('os')
 const { name } = require('ejs')
+const session = require('express-session')
+const cookieParser = require('cookie-parser');
 
 const port = 3000
 app.use('/', express.static(path.join(__dirname, 'profile')))
@@ -13,7 +15,15 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({    
   extended: true
 }));  
+
 app.use(express.json());
+app.use(cookieParser());
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } 
+}));
 const userRouter = require('./router/userRouter.js')
 const adminRouter = require('./router/adminRouter.js')
 app.use('/admin', adminRouter)

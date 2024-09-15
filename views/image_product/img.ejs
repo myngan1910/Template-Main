@@ -48,7 +48,7 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Link</th>
+                          <th>Image</th>
                           <th>Productid</th>
 
                        
@@ -61,7 +61,7 @@
                         <% for (var i =0 ; i < data.length; i++) {%>
                         <tr>
                           <td><%= data[i].id %></td>
-                          <td><%= data[i].link %></td>
+                          <td><img src="../<%= data[i].image %>" class=" img-fluid" width="20px" height="5px"></td>
                           <td><%= data[i].productid %></td>
                           <td><a href="/admin/ima/<%= data[i].id %>">View
                             /<a href="/admin/imgdele/<%= data[i].id %>">Delete</a></td>

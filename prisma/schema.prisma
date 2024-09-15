@@ -170,7 +170,7 @@ model products {
 
 model image_product {
     id Int  @id @default(autoincrement())
-    link String?
+    image String?
     product products @relation(fields: [productid], references: [id])
     productid Int
 }

@@ -45,11 +45,11 @@
                  
                 </div>
                 
-                <form action="/admin/createimg" method="post">
+                <form action="/admin/createimg" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                      
-                    <label for="link">Link:</label>
-                    <input type="text" class="form-control" id="link" value="" name="link">
+                    <label for="image">Image:</label>
+                    <img> <input type="file"  name="image" /><br>
                     <label for="productid">Productid:</label>
                       <select type="text" class="form-control" value="" name="productid">
                         <% for(var i=0; i< productid.length;i++){%>

@@ -73,8 +73,9 @@
                 
                 <form action="/admin/img/<%= imgDetail.id %>" method="post" >
                     <div class="form-group">
-                        <label for="link">Link:</label>
-                        <input type="text" class="form-control" id="link" value="<%= imgDetail.link %>" name="link">
+                        <label for="image">Image:</label>
+                        <img src="../../<%= imgDetail.image %>" alt="" class=" img-fluid mt-3" width="200px"  >
+                        <input type="file"  name="image" /><br>
                         <label for="productid">Productid:</label>
                         <select type="text" class="form-control" value="<%= imgDetail.productid %>" name="productid">
                             <% for(var i=0; i< productid.length;i++){%>

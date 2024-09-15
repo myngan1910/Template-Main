@@ -20,6 +20,9 @@ module.exports = {
                     avata: true,
                     lname: true
                 }
+               },
+               comment: {
+                
                }
             }
         });
