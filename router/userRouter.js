@@ -9,6 +9,7 @@ const checkoutRouter = require('../router/userRouter/checkout.js')
 const productRouter = require('../router/userRouter/product.js')
 const loginRouter = require('../router/userRouter/login.js')
 const registerRouter = require('../router/userRouter/register.js')
+const viewproductRouter = require('../router/userRouter/viewproduct.js')
 
 
 router.use('/', shopRouter);
@@ -19,6 +20,7 @@ router.use('/contact',contactRouter);
 router.use('/checkout',checkoutRouter);
 router.use('/product',productRouter);
 router.use('/login',loginRouter);
+router.use('/view',viewproductRouter);
 
 
 //REGISTER

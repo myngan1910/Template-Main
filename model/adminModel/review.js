@@ -55,8 +55,8 @@ module.exports = {
         data: {
           content: content,
           evaluate: evl,
-          userid: user,
-          productid: product
+          userid: parseInt(user),
+          productid: parseInt(product)
         }
     })
     return create;

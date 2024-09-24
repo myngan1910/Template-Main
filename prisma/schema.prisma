@@ -74,6 +74,7 @@ model users {
    review reviews[]
    
    order orders[]
+   usercart user_product[]
 
 }
 
@@ -166,6 +167,8 @@ model products {
     
     
     review reviews[]
+    procart  user_product[]
+   
 }
 
 model image_product {
@@ -228,4 +231,35 @@ model order_product {
   quanlity String?
 
   @@id([orderid,productid])
+}
+
+model user_product {
+   id Int  @id @default(autoincrement())
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   product products @relation (fields: [productid], references: [id])
+   productid Int
+   quanlity String?
+ 
+}
+
+
+
+model mkt_endow {
+   id Int  @id @default(autoincrement())
+   name String?
+   image String?
+   discount String?
+   description String?
+   
+}
+
+model promotion {
+   id Int  @id @default(autoincrement())
+   name String?
+   image String?
+   title String?
+   discount String?
+  
+   
 }

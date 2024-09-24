@@ -1,6 +1,7 @@
 const {PrismaClient} = require('@prisma/client')
 const client = new PrismaClient();
 const loginModel = require('../model/userModel/loginModel.js')
+const login = require('../model/adminModel/user.js')
 const  bcrypt = require('bcrypt')
 
 module.exports = {
@@ -36,6 +37,17 @@ module.exports = {
         
 
 
-    }  
+    }  ,
+    loginAdmin: async(req,res, next ) => {
+      const id = req.session.userId;
+      const data = await login.postLogin(id);
+      console.log(data.role)
+      if(data.role.possion !=  "Admin" ) {
+         res.redirect('/')
+      } else {
+       next()
+      }
+    },
+
     
 }

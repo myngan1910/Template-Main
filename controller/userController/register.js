@@ -2,10 +2,15 @@ const express = require('express')
 const app = express()
 const registerModel = require('../../model/adminModel/user.js')
 const userModel = require('../../model/adminModel.js')
+const shopModel = require('../../model/adminModel/shop.js')
+const socialModel = require('../../model/adminModel/social.js')
+const serviceModel = require('../../model/adminModel/service.js')
 module.exports = {
     getRegister: async(req,res) => {
-      
-        res.render('register')
+        const shop = await shopModel.getShopInfo();
+        const social = await socialModel.getSocial();
+        const service = await serviceModel.getService();
+        res.render('register',{shop:shop, social:social, service:service})
 
     },
     postRegister: async(req,res) => {

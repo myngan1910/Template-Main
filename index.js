@@ -26,9 +26,10 @@ app.use(session({
 }));
 const userRouter = require('./router/userRouter.js')
 const adminRouter = require('./router/adminRouter.js')
-app.use('/admin', adminRouter)
+const login= require('./middleware/login.js')
+app.use('/admin',  adminRouter)
 app.use('/', userRouter);
-
+// login.requireLogin, login.loginAdmin,
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })

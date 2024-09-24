@@ -18,9 +18,10 @@ module.exports = {
       
         const content = req.body.content;
         const user = parseInt(req.session.userId);
-        const blog = parseInt(req.params.blogid);
-        console.log(user)
-        const createPro =  await comModel.postCom(content,user,blog);
+        const blog = parseInt(req.params.ID);
+        console.log(blog)
+
+        const createPro =  await comModel.postCreateCom(content,user,blog);
         return res.redirect(`/admin/comment`)
       
     
@@ -40,13 +41,5 @@ module.exports = {
         res.redirect(`/admin/comment`)
         
     },
-    postCom: async(req,res) => {
-        const genId = parseInt(req.params.ID);
-        const content = req.body.content;
-        const user = parseInt(req.body.userid);
-        const blog = parseInt(req.body.blogid);
-        const viewPro =  await comModel.postCom(genId,content,user,blog)
-        return res.redirect(`/admin/comment`)
-    },
-    
+   
 }

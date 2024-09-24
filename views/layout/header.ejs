@@ -35,7 +35,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="/"><img src="images/logo.png" alt="logo"></a>
+                        <a href="/"><img src="/images/logo.png" alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -43,9 +43,9 @@
                         <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                         <!-- Search Form -->
                         <div class="search-top">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
-                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                            <form action="/search" method="GET">
+                                <input name="search"  id="search-input" placeholder="Search Products Here....." type="text">
+                                <button type="submit" class="btnn" ><i class="ti-search" id="search-icon" ></i></button>
                             </form>
                         </div>
                         <!--/ End Search Form -->
@@ -62,9 +62,9 @@
                                 <option>mobile</option>
                                 <option>kid’s item</option>
                             </select>
-                            <form>
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
+                            <form action="/search" method="GET">
+                                <input name="search"  id="search-input" placeholder="Search Products Here....." type="text">
+                                <button type="submit" class="btnn" ><i class="ti-search" id="search-icon" ></i></button>
                             </form>
                         </div>
                     </div>
@@ -78,10 +78,10 @@
                         <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
-                        <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                        <!-- <div class="sinlge-bar shopping">
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a> -->
                             <!-- Shopping Item -->
-                            <div class="shopping-item">
+                            <!-- <div class="shopping-item">
                                 <div class="dropdown-cart-header">
                                     <span>2 Items</span>
                                     <a href="#">View Cart</a>
@@ -107,9 +107,9 @@
                                     </div>
                                     <a href="/checkout" class="btn animate">Checkout</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--/ End Shopping Item -->
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -196,8 +196,12 @@
                                     <div class="nav-inner">	
                                         <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="/">Home</a></li>
-                                                <li><a href="/product">Product</a></li>												
-                                                <li><a href="#">Service</a></li>
+                                                <li><a href="#">Product</a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="/view">View Product</a></li>
+    
+                                                    </ul></li>											
+                                                <!-- <li><a href="/">Service</a></li> -->
                                                 <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                     <ul class="dropdown">
                                                         <li><a href="/cart">Cart</a></li>
@@ -210,10 +214,8 @@
                                                         <li><a href="/register">Register</a></li>
                                                     </ul>
                                                 </li>									
-                                                <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="/blog">Blog Single Sidebar</a></li>
-                                                    </ul>
+                                                <li><a href="/blog/:ID">Blog<i class="ti-angle-down"></i></a>
+                                                   
                                                 </li>
                                                 <li><a href="/contact">Contact Us</a></li>
                                             </ul>

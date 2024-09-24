@@ -15,11 +15,15 @@ module.exports = {
         res.render('./image_product/imgcre', {productid: data} )
     },
     postCreateImg:  async(req,res) => {
-        const image = req.file ;
+        const image = req.files;
         const data = [];
-        const img = await adminModel.checkimg(image,data)
+        const img =[]
+        for(var i=0; i<image.length; i++){
+
+        
+        img.push( await adminModel.checkimg(image[i],data))
+    }
         const pro = parseInt(req.body.productid);
-       
         const createPro =  await img_proModel.postCreateImg(img, pro);
         return res.redirect(`/admin/img-pro`)
       
@@ -30,6 +34,7 @@ module.exports = {
         const genId = parseInt(req.params.ID);
         const data=  await img_proModel.getdetailImg(genId)
         const data1 = await productModel.getProduct();
+        console.log(data)
 
         return res.render("./image_product/imgDetail", {imgDetail: data, productid: data1})
        
@@ -43,9 +48,12 @@ module.exports = {
     },
     postImg: async(req,res) => {
         const genId = parseInt(req.params.ID);
-        const image = req.file;
+        const image = req.files;
         const data = await img_proModel.getdetailImg(genId);
-        const img = await adminModel.checkimg(image,data)
+        const img = []
+        for(var i=0; i<image; i++){
+            img.push( await adminModel.checkimg(image[i],data))
+        }
         const pro = parseInt(req.body.productid);
         const viewPro =  await img_proModel.postImg(genId,img, pro)
         return res.redirect(`/admin/img-pro`)

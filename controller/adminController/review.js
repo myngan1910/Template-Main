@@ -18,10 +18,10 @@ module.exports = {
     postCreateRev:  async(req,res) => {
         
          const content = req.body.content;
-         const evl = req.body.evaluate;
+         const evl = '';
          
-        const user = parseInt(req.body.userid);
-        const product = parseInt(req.body.productid);
+         const user = parseInt(req.session.userId);
+        const product = parseInt(req.params.ID);
 
         const createPro =  await reviewModel.postCreateRev(content, evl, user, product);
         return res.redirect(`/admin/review`)
@@ -31,10 +31,11 @@ module.exports = {
     getdetailRev: async(req,res) => {
        
         const genId = parseInt(req.params.ID);
+        console.log(genId)
         const data=  await reviewModel.getdetailRev(genId)
         const data2 = await userModel.getUser();
         const data1 = await productModel.getProduct();
-
+       
         return res.render("./reviews/revDetail", {revDetail: data, userid: data2, productid: data1})
        
     },

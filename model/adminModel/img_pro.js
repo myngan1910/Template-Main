@@ -39,13 +39,14 @@ module.exports = {
        return data;
     },
     postCreateImg : async(img,pro) => {
+        for(var i=0; i < img.length; i++){
     const create =await client.image_product.create({
         data: {
-            image: img,
+            image: img[i],
             productid: pro
         }
     })
-    return create;
+}
     },
     getdetailImg: async(genId) => {
        const data = await client.image_product.findUnique({
@@ -69,13 +70,14 @@ module.exports = {
         return { data, dele1 };
     },
     postImg: async(genId,img, pro) => {
+        for(var i=0; i< img; i++){
     const update = await client.image_product.update({
         where: {id:genId},
         data: {
-           image: img,
+           image: img[i],
            productid: pro
         }
     })
-    return update;
+}
     },  
 }

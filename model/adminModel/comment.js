@@ -1,10 +1,9 @@
 const {PrismaClient, Prisma} = require('@prisma/client');
-const blog = require('./blog');
 const client = new PrismaClient();
 module.exports = {
     getComment: async(genId) => {
         const data = await client.comments.findMany({
-            where: {blogid : genId},
+            where: {ID : genId},
             select: {
                 id: true,
                 content:true,
@@ -13,7 +12,7 @@ module.exports = {
                 user: {
                     select: {
                         avata: true,
-                        name: true
+                        lname: true
                     }
                 }
 
@@ -42,16 +41,5 @@ getdeleCom: async(genId) => {
      const data1 =await client.comments.deleteMany({where: {id:genId}})
     return {data1};
  },
-     postCom: async(genId,content,user,blog) => {
-     const update =  await client.comments.update({
-        where: {id:genId},
-        data: {
-            content:content,
-            userid: parseInt(user),
-            postid: parseInt(post)
-        }
-     })
-     return update;
- 
- },
+    
 }

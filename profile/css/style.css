@@ -1214,7 +1214,6 @@ Version:1.0
 }
 .hero-slider .single-slider {
 	height: auto;
-	background-image: url('https://via.placeholder.com/1900x700');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -4233,10 +4232,12 @@ Version:1.0
 	float: left;
 	width: 80px;
 	height: 80px;
-	margin-right: 20px;
+	margin-right: -92px;
+	margin-bottom: 10px;
 }
 .main-sidebar .single-post .content{
 	padding-left:100px;
+	margin-bottom: 30px;
 }
 .main-sidebar .single-post .content h5 {
 	line-height: 18px;

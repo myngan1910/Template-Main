@@ -43,11 +43,11 @@ module.exports = {
         const name = req.body.name;
         const image = req.file;
         const data = await  serviceModel.getDetailService(genId);
-        const icon = await  serviceModel.checkimg(image,data)
+        const icon = await  adminModel.checkimg(image,data)
         
         const des = req.body.description;
         const viewPro =  await  serviceModel. postGetService(genId,name,icon,des)
-        return res.redirect(`/admin/shop`)
+        return res.redirect(`/admin/service`)
     },
 
 }

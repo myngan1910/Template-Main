@@ -21,13 +21,48 @@ module.exports = {
                     lname: true
                 }
                },
-               comment: {
+              
                 
-               }
+               
             }
         });
      
-
+       
+       return data;
+    },
+    getBlogg: async(genId) => {
+        const data = await client.blogs.findUnique({
+            where: {id:genId},
+            select: {
+               id: true,
+               image: true,
+               time: true,
+               description1: true,
+               description2: true,
+               creater: true,
+               user: {
+                select: {
+                    fname: true,
+                    avata: true,
+                    lname: true
+                }
+               },
+               comment: {
+                    select:{
+                        content:true,
+                        user:{
+                            select:{
+                             lname:true,
+                            avata:true   
+                            }
+                            
+                        } 
+                    }
+                
+               }
+            }
+        })
+        
        return data;
     },
     postCreateBlog : async(imagee,time,des,dess,cre,user, cate,tag) => {

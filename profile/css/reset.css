@@ -233,6 +233,8 @@ big {
 .section {
 	padding: 100px 0;
 	position: relative;
+	
+    margin-left: 145px;
 }
 .section-title {
 	text-align: center;

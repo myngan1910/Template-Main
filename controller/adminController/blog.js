@@ -65,5 +65,6 @@ module.exports={
         const viewPro =  await blogModel.postBlog(genId,imagee,time,des,dess,cre,user, tag, cate)
         return res.redirect(`/admin/blog`)
     },
+    
 
 }
