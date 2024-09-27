@@ -4979,6 +4979,21 @@ Version:1.0
 	color:#fff;
 	text-decoration:underline;
 }
+
+.tm-prev-next {
+    background-color: #008CBA; /* Màu xanh cho nút */
+    color: white; /* Màu chữ trắng */
+}
+
+.tm-prev-next-wrapper {
+    display: flex;
+    justify-content: center; /* Canh giữa các nút */
+}
+
+.tm-prev-next.disabled {
+    background-color: gray; /* Màu khi bị vô hiệu hóa */
+    pointer-events: none; /* Vô hiệu hóa nhấn khi disabled */
+}
 /*=============================
 	End Footer CSS
 ===============================*/

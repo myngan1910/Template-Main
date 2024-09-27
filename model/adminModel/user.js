@@ -34,6 +34,36 @@ module.exports = {
 
        return data;
     },
+    getUserr: async(userid) => {
+        const data = await client.users.findUnique({
+            where: {id:userid},
+            select: {
+                id: true,
+              avata: true,
+              fname: true,
+              lname: true,
+              mail: true,
+              phone: true,
+              address1: true,
+              address2 : true,
+              pass: true,
+              postal: true,
+              state: true,
+              contry: true,
+              company: true,
+              roleid: true,
+              role: {
+                select: {
+                    possion: true
+                }
+              }
+               
+            }
+        });
+     
+
+       return data;
+    },
     postLogin: async(id) => {
         const data = await client.users.findUnique({
             where: {id:id},

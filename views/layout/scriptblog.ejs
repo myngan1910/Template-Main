@@ -80,6 +80,25 @@
     });
 
  
-   
+    var currentpage = parseInt("<%= currentpage %>") || 1;
+    var totalPages = 2; 
+    prevBtn.onclick = function() {
+        if (currentpage > 1) {
+            window.location.href = `/view/page/${currentpage - 1}`;
+        }
+    };
+    nextBtn.onclick = function() {
+        if (currentpage < totalPages) {
+            window.location.href = `/view/page/${currentpage + 1}`;
+        }
+    };
+    if (currentpage <= 1) {
+        prevBtn.classList.add('disabled');
+       
+    }
+    if (currentpage >= totalPages) {
+        nextBtn.classList.add('disabled');
+       
+    }
 
 </script>

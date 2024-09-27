@@ -47,7 +47,7 @@
 									<div class="blog-detail">
 										<h2 class="blog-title"><%= blog.description1%></h2>
 										<div class="blog-meta">
-											<span class="author"><a href="#"><i class="fa fa-user"></i><%= blog.creater%></a><a href="#"><i class="fa fa-calendar"></i><%= blog.time%></a><a href="#"><i class="fa fa-comments"></i>Comment (15)</a></span>
+											<span class="author"><a href="#"><i class="fa fa-user"></i><%= blog.creater%></a><a href="#"><i class="fa fa-calendar"></i><%= blog.time%></a><a href="#"><i class="fa fa-comments"></i>Comments (<%=blog.comment.length%>)</a></span>
 										</div>
 										<div class="content">
 											<p><%= blog.description2%></p>
@@ -72,7 +72,7 @@
 								</div>
 								<div class="col-12">
 									<div class="comments">
-										<h3 class="comment-title">Comments (3)</h3>
+										<h3 class="comment-title">Comments (<%=blog.comment.length%>)</h3>
 										<!-- Single Comment -->
 										<% for (var i =0 ; i < blog.comment.length; i++) {%>
 										<div class="single-comment">
@@ -80,9 +80,7 @@
 											<div class="content">
 												<h4><%= blog.comment[i].user.lname %></h4>
 												<p><%= blog.comment[i].content %></p>
-												<div class="button">
-													<a href="#" class="btn"><i class="fa fa-reply" aria-hidden="true"></i>Reply</a>
-												</div>
+												
 											</div>
 										</div>
 										<%}%>
@@ -128,12 +126,12 @@
 					<div class="col-lg-4 col-12">
 						<div class="main-sidebar">
 							<!-- Single Widget -->
-							<div class="single-widget search">
+							<!-- <div class="single-widget search">
 								<div class="form">
 									<input type="email" placeholder="Search Here...">
 									<a class="button" href="#"><i class="fa fa-search"></i></a>
 								</div>
-							</div>
+							</div> -->
 							<!--/ End Single Widget -->
 							<!-- Single Widget -->
 							<div class="single-widget category">

@@ -7,6 +7,7 @@ const socialModel = require('../../model/adminModel/social.js')
 const colorModel = require('../../model/adminModel/color.js')
 const sizeModel = require('../../model/adminModel/size.js')
 const reviewModel = require('../../model/adminModel/review.js')
+
 module.exports = {
     getProduct: async(req,res) => {
         const userid = parseInt(req.session.userId)
@@ -19,7 +20,10 @@ module.exports = {
         const social = await socialModel.getSocial();
         const color = await colorModel.getColor();
         const size = await sizeModel.getSize();
-        const cart = await productModel.getCart(userid,genId);
+        var cart 
+        if( userid >= 0) {
+             cart = await productModel.getCart(userid,genId)
+        }
         const view = await productModel.increas(genId)
         if(userid >= 0 ){
         console.log(await productModel.getUser_pro(userid))
@@ -28,8 +32,13 @@ module.exports = {
 
     },
     getviewProduct: async(req,res) => {
-        const genId = parseInt(req.params.ID);
+        const genId = parseInt(req.params.ID) || 1;
+        
         const userid = parseInt(req.session.userId)
+        var cart 
+        if( userid >= 0) {
+             cart = await productModel.getCart(userid)
+        }
         const product = await productModel.getProduct(genId);
         const productt = await productModel.getProduct()
         const shop = await shopModel.getShopInfo();
@@ -37,10 +46,11 @@ module.exports = {
         const social = await socialModel.getSocial();
         const color = await colorModel.getColor();
         const size = await sizeModel.getSize();
-        const cart = await productModel.getProduct(userid);
-       
-        res.render('viewproduct', {product:product,shop:shop, service:service, social:social, color:color,size:size, productt:productt, cart:cart})
+        const pro = await productModel.getpageProduct((genId - 1)*2)
 
+       
+        res.render('viewproduct', {product:product,shop:shop, service:service, social:social, color:color,size:size, productt:productt, cart:cart,currentpage:genId})
+    
     },
     createCart: async(req,res) => {
         const id = parseInt(req.params.ID);

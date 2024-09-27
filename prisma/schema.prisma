@@ -102,6 +102,7 @@ model orders {
    id Int  @id @default(autoincrement())
    userr users @relation(fields: [userrid], references: [id])
    userrid Int
+   active Int
    products order_product[]
 }
 

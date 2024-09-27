@@ -51,12 +51,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(var i=0; i < cartt.length; i++){%>
+							<% if(cart != undefined){%> 
+							<% for(var i=0; i < cart.length; i++){%>
+								
 							<tr>
-								<td class="image" data-title="No"><img src="<%= cartt[i].product.image[0].image%>" alt="#"></td>
+								<td class="image" data-title="No"><img src="<%= cart[i].product.image[0].image%>" alt="#"></td>
 								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href=""><%= cartt[i].product.name%></a></p>
-									<p class="product-des"><%= cartt[i].product.description%></p>
+									<p class="product-name"><a href=""><%= cart[i].product.name%></a></p>
+									<p class="product-des"><%= cart[i].product.description%></p>
 								</td>
 								
 								<td class="qty" data-title="Qty"><!-- Input Order -->
@@ -66,7 +68,7 @@
 											<i class="ti-minus"></i>
 										  </button>
 										</div>
-										<input type="text" name="quantity" class="input-number" data-min="1" data-max="1000" value="1">
+										<input type="text" name="quantity" class="input-number" data-min="1" data-max="1000" value="<%= cart[i].quanlity%>">
 										<div class="button plus">
 										  <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
 											<i class="ti-plus"></i>
@@ -75,11 +77,11 @@
 									  </div>
 									<!--/ End Input Order -->
 								</td>
-								<td class="total-amount" data-title="Total"><span><%= cartt[i].product.price%></span></td>
+								<td class="total-amount" data-title="Total"><span><%= cart[i].product.price%></span></td>
 								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
 							</tr>
 							<%}%>
-							
+							<% }%>
 			
 						</tbody>
 					</table>
@@ -107,14 +109,23 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li>Cart Subtotal<span>$330.00</span></li>
+
+										<li>Cart Subtotal<span> $<% if(cart != undefined) {%>
+											<% var account = 0 %>
+
+											<% for (var i=0; i < cart.length; i++ ) {%>
+                                              <%  account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity)%>
+												<%}%>
+												<%= account%>
+												<%}%> 
+										</span></li>
 										<li>Shipping<span>Free</span></li>
 										<li>You Save<span>$20.00</span></li>
-										<li class="last">You Pay<span>$310.00</span></li>
+										<li class="last">You Pay<span>$<%= account%>.00</span></li>
 									</ul>
 									<div class="button5">
-										<a href="#" class="btn">Checkout</a>
-										<a href="#" class="btn">Continue shopping</a>
+										<a href="/information" class="btn">Checkout</a>
+										<a href="/" class="btn">Continue shopping</a>
 									</div>
 								</div>
 							</div>

@@ -1,10 +1,48 @@
 const {PrismaClient, Prisma} = require('@prisma/client');
-const { getDeleCart } = require('../../controller/userController/cart');
 const client = new PrismaClient();
 
 module.exports = {
     getProduct: async() => {
         const data = await client.products.findMany({
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                description: true,
+                classifid: true,
+                image: {
+                    select: {
+                        image: true
+                    }
+                },
+                
+                classify: {
+                    select: {
+                        name: true
+                    }
+                },
+                discountid: true,
+                discount: {
+                    select: {
+                        name: true
+                    }
+                },
+                onsale: true,
+                view: true
+            },
+            orderBy: {
+                id: 'asc'
+            }
+             
+        });
+       
+
+       return data; 
+    },
+    getpageProduct: async(pro) => {
+        const data = await client.products.findMany({
+            skip: pro,
+            take: 3,
             select: {
                 id: true,
                 name: true,
@@ -338,12 +376,13 @@ module.exports = {
             include: {
                 product: {
                     include: {
-                        image:{}
+                        image:{},
                     }
                 }
             }
 
         })
+        console.log(data.length)
         return data
      },
 

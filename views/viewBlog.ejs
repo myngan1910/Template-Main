@@ -45,7 +45,7 @@
 						<div class="bread-inner">
 							<ul class="bread-list">
 								<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
-								<li class="active"><a href="/view">Product</a></li>
+								<li class="active"><a href="/blog">Blog</a></li>
 							</ul>
 						</div>
 					</div>
@@ -61,34 +61,22 @@
 					
 					<div class="col-lg-9 col-md-8 col-12">
 						
-						<div class="row">
-                            <% for(var i=0; i < product.length; i++){%>
-							<div class="col-lg-4 col-md-6 col-12">
-								<div class="single-product">
-									<div class="product-img">
-										<a href="/product/<%= product[i].id%>" style="width: 100%;height: 200px;">
-											<img class="default-img" src="../<%= product[i].image[0].image%>" alt="#">
-											<img class="hover-img" src="../<%= product[i].image[0].image%>" alt="#">
-										</a>
-										<div class="button-head">
-											<div class="product-action">
-												<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-												<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-												<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-											</div>
-											<div class="product-action-2">
-												<a title="Add to cart" href="#">Add to cart</a>
-											</div>
+						<div class="row" >
+                            <% for(var i=0; i < blog.length; i++){%>
+								<div class="col-lg-4 col-md-6 col-12" style="margin-bottom: 50px">
+									<a href="/blog/<%= blog[i].id %>">
+									<!-- Start Single Blog  -->
+									<div class="shop-single-blog">
+										<img src="../<%= blog[i].image %>" alt="image" style="width: 100%;height: 200px;">
+										<div class="content" style="text-align: center;margin-top: 20px;">
+											<p class="date"><%= blog[i].time %></p>
+											<b ><%= blog[i].description1 %></b> <br>
+											<a href="/blog/<%= blog[i].id %>" class="more-btn">Continue Reading</a>
 										</div>
 									</div>
-									<div class="product-content">
-										<h3><a href="/product/<%= product[i].id%>"><%= product[i].name%></a></h3>
-										<div class="product-price">
-											<span><%= product[i].price%></span>
-										</div>
-									</div>
+								</a>
+									<!-- End Single Blog  -->
 								</div>
-							</div>
                            <%}%>
 							
 							
@@ -102,7 +90,7 @@
 					<ul class="pagination-list">
 						<!-- Nút "Prev" -->
 						<li>
-							<a href="<%= currentpage > 1 ? '/product/page/' + (currentpage - 1) : '#' %>" 
+							<a href="<%= currentpage > 1 ? '/blog/page/' + (currentpage - 1) : '#' %>" 
 							   class="<%= currentpage <= 1 ? 'disabled' : '' %>">
 							   Prev
 							</a>
@@ -111,7 +99,7 @@
 						<!-- Tạo danh sách các trang -->
 						<% for (var i = 1; i <= 2; i++) { %>
 							<li class="<%= currentpage === i ? 'active' : '' %>">
-								<a href="/product/page/<%= i %>">
+								<a href="/blog/page/<%= i %>">
 									<%= i %>
 								</a>
 							</li>
@@ -119,7 +107,7 @@
 			
 						<!-- Nút "Next" -->
 						<li>
-							<a href="<%= currentpage < 2 ? '/product/page/' + (currentpage + 1) : '#' %>" 
+							<a href="<%= currentpage < 2 ? '/blog/page/' + (currentpage + 1) : '#' %>" 
 							   class="<%= currentpage >= 2 ? 'disabled' : '' %>">
 							   Next
 							</a>
@@ -129,6 +117,7 @@
 				<!--/ End Pagination -->
 			</div>
 		</section>
+		
 		<!--/ End Product Style 1  -->	
 
 		<!-- Start Shop Newsletter  -->
@@ -147,6 +136,6 @@
 	
 	
     <!-- Jquery -->
-    <%- include('./layout/scriptproduct');-%>
+    <%- include('./layout/scriptblog');-%>
 </body>
 </html>

@@ -9,10 +9,9 @@ const userModel = require('../../model/adminModel/user.js')
 const user = require('../../model/adminModel/user_class.js')
 const endowModel = require('../../model/adminModel/endow.js')
 const promotionModel = require('../../model/adminModel/promotion.js')
-const cartModel = require('../../model/adminModel/product.js')
 module.exports = {
     getEShop: async(req,res) => {
-      
+      const userid = parseInt(req.session.userId)
       const shop = await  shopModel.getShopInfo();
       const blog = await blogModel.getBlog();
       const service = await serviceModel.getService();
@@ -24,11 +23,17 @@ module.exports = {
       const item = await productModel.gethotItem()
       const endow = await endowModel.getEndow()
       const promotion = await promotionModel.getPro()
-      
+      var cart 
+      if(userid >= 0) {
+       cart = await productModel.getCart(userid)
+
+      }
+      const userr = userModel.getUser(userid)
+     
     
 
 
-        res.render('index', {shop:shop, blog:blog,service:service, social:social, product:product, userclass:userclass, topview:topview, onsale:onsale, item:item, endow:endow, promotion: promotion})
+        res.render('index', {shop:shop, blog:blog,service:service, social:social, product:product, userclass:userclass, topview:topview, onsale:onsale, item:item, endow:endow, promotion: promotion, cart:cart, user:userr})
 
     },
     getSearch: async(req,res) => {

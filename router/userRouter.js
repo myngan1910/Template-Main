@@ -17,7 +17,7 @@ router.use('/', shopRouter);
 router.use('/cart', cartRouter);
 router.use('/blog',blogRouter);
 router.use('/contact',contactRouter);
-router.use('/checkout',checkoutRouter);
+router.use('/information',checkoutRouter);
 router.use('/product',productRouter);
 router.use('/login',loginRouter);
 router.use('/view',viewproductRouter);

@@ -25,6 +25,36 @@ module.exports = {
                 
                
             }
+            
+        });
+     
+       
+       return data;
+    },
+    getpageBlog: async(blog) => {
+        const data = await client.blogs.findMany({
+            skip: blog,
+            take: 2,
+            select: {
+               id: true,
+               image: true,
+               time: true,
+               description1: true,
+               description2: true,
+               creater: true,
+               userid: true,
+               user: {
+                select: {
+                    fname: true,
+                    avata: true,
+                    lname: true
+                }
+               },
+              
+                
+               
+            }
+            
         });
      
        

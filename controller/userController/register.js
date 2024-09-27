@@ -5,12 +5,18 @@ const userModel = require('../../model/adminModel.js')
 const shopModel = require('../../model/adminModel/shop.js')
 const socialModel = require('../../model/adminModel/social.js')
 const serviceModel = require('../../model/adminModel/service.js')
+const productModel = require('../../model/adminModel/product.js')
 module.exports = {
     getRegister: async(req,res) => {
+        const userid = parseInt(req.session.userId)
         const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
-        res.render('register',{shop:shop, social:social, service:service})
+        var cart 
+        if( cart > 1) {
+             cart = await productModel.getCart(userid)
+        }
+        res.render('register',{shop:shop, social:social, service:service, cart: cart})
 
     },
     postRegister: async(req,res) => {
