@@ -4,10 +4,10 @@ const socialModel = require('../../model/adminModel/social.js')
 module.exports = {
     getSocial: async(req,res) =>{
         const data = await socialModel.getSocial();
-        res.render('./social/social',{data:data} )
+        res.render('./admin/social/social',{data:data} )
     },
     getCreateSocial: async(req,res) => {
-        res.render('./social/socialcre' )
+        res.render('./admin/social/socialcre' )
     },
     postCreSocial:  async(req,res) => {
         const name = req.body.name;
@@ -20,7 +20,7 @@ module.exports = {
     getdetailSocial: async(req,res) => {
         const genId = parseInt(req.params.ID);
         const data =  await socialModel.getdetailSocial(genId)
-        return res.render("./social/socialDetail", {socialDetail: data})
+        return res.render("./admin/social/socialDetail", {socialDetail: data})
     },
     getdeleSocial: async(req,res) => {
         const genId = parseInt(req.params.ID);

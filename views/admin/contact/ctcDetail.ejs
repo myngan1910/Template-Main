@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Contact</h3> 
+                     
+                </div>
+                
+                <form action="/admin/cont/<%= ctcDetail.id %>" method="post" >
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="<%= ctcDetail.name %>" name="name">
+                        <label for="subject">Subject:</label>
+                        <input type="subject" class="form-control" id="subject" value="<%= ctcDetail.subject %>" name="subject">
+                        <label for="mail">Mail:</label>
+                        <input type="mail" class="form-control" id="mail" value="<%= ctcDetail.mail %>" name="mail">
+                        <label for="phone">Phone:</label>
+                        <input type="phone" class="form-control" id="phone" value="<%= ctcDetail.phone %>" name="phone">
+                        <label for="message">Message:</label>
+                        <input type="message" class="form-control" id="message" value="<%= ctcDetail.message %>" name="message">
+                       
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                    
+                  </form>
+                  <a href="/admin/contact"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

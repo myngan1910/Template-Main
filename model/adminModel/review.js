@@ -10,6 +10,7 @@ module.exports = {
     getRev: async() => {
         const data = await client.reviews.findMany({
             select: {
+                id: true,
               content: true,
               evaluate: true,
               userid: true,

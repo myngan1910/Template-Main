@@ -126,7 +126,7 @@ module.exports = {
     },
     postCreateProduct : async(name,price,des,clas,dis,ons,view,size, color) => {
         
-    const create =await client.products.create({
+    const creat =await client.products.create({
         data: {
             name: name,
             price: price,
@@ -172,7 +172,7 @@ module.exports = {
             colorid: parseInt(color)
         }
     })
-    return {create, size_product, color_product};
+    return {size_product, color_product};
     },
     getdetailProduct: async(genId) => {
        const data = await client.products.findUnique({
@@ -319,6 +319,7 @@ module.exports = {
      getTopView: async()=> {
         const data = await client.products.findMany({
             select: {
+                id:true,    
                 image: {
                     select: {
                         image: true
@@ -337,6 +338,7 @@ module.exports = {
      getOnsale: async()=> {
         const data = await client.products.findMany({
             select: {
+                id:true,
                 image: {
                     select: {
                         image: true
@@ -355,6 +357,7 @@ module.exports = {
      gethotItem: async()=> {
         const data = await client.products.findMany({
             select:{
+                id:true,
                 image: {
                     select: {
                         image: true
@@ -370,9 +373,10 @@ module.exports = {
   return data
      },
 
-     getCart: async(userid, productid) => {
+     getCart: async(userid) => {
+        
         const data = await client.user_product.findMany({
-            where: {userid:userid, productid:productid},
+            where: {userid:userid},
             include: {
                 product: {
                     include: {
@@ -382,27 +386,21 @@ module.exports = {
             }
 
         })
-        console.log(data.length)
         return data
      },
 
-     getManyCart: async(userid) => {
-        const data = await client.user_product.findMany({
-            where: {userid:userid},
-            include: {
-                product: {
-                    include: {
-                        image:{}
-                    }
-                }
-            },
-            select: {
-                quanlity:true
-            }
+     postOrder: async(idproduct, quant) => {
+       const data = client.order_product.create({
+        data: {
+            
+            productid: idproduct,
+            quanlity: quant
+        }
 
-        })
-        return data
+       })
      }
+  
+    
 
 
  

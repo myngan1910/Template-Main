@@ -8,10 +8,10 @@ module.exports = {
     // SHOP-INFO
     getShopInfo: async(req,res) =>{
         const dtShop = await shopModel.getShopInfo();
-        res.render('./shops/shop', {data:dtShop})
+        res.render('./admin/shops/shop', {data:dtShop})
     },
     getCreateShop: async(req,res) =>{
-        res.render('./shops/shopcre')
+        res.render('./admin/shops/shopcre')
     },
     postCreateShop:  async(req,res) => {
         const name = req.body.name;
@@ -32,7 +32,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const detail=  await shopModel.getDetailShop(genId)
-        return res.render("./shops/shopDetail", {shopDetail: detail})
+        return res.render("./admin/shops/shopDetail", {shopDetail: detail})
 
     },
     getDeleteShop: async(req,res) => {

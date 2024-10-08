@@ -6,10 +6,10 @@ module.exports = {
     // ENDOW
     getEndow: async(req,res) =>{
         const dtShop = await  endowModel.getEndow();
-        res.render('./endow/endow', {data:dtShop})
+        res.render('./admin/endow/endow', {data:dtShop})
     },
     getCreateEndow: async(req,res) =>{
-        res.render('./endow/endowcre')
+        res.render('./admin/endow/endowcre')
     },
     postCreateEndow:  async(req,res) => {
         const name = req.body.name;
@@ -28,7 +28,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const detail=  await  endowModel.getDetailEndow(genId)
-        return res.render("./endow/endowDetail", {endowDetail: detail})
+        return res.render("./admin/endow/endowDetail", {endowDetail: detail})
 
     },
     getDeleteEndow: async(req,res) => {

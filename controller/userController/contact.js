@@ -8,16 +8,25 @@ module.exports = {
     getContact: async(req,res) => {
         const userid = parseInt(req.session.userId)
        
-        var cart 
+        let cart
+        let account = 0;
         if( userid >= 0) {
-             cart = await productModel.getCart(userid)
+             cart = await productModel.getCart(userid);
+            
+        }
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+             
+
+            }
         }
       
        
         const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
-        res.render('contact',{shop:shop, social:social, service:service, cart:cart})
+        res.render('./dashboard/contact',{shop:shop, social:social, service:service, cart:cart, account:account})
     
     },
 }

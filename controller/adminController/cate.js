@@ -5,10 +5,10 @@ module.exports = {
     //CATEGORIES
     getCate: async(req,res) =>{
         const dtPro = await cateModel.getCate();
-        res.render('./categories/cate',{data:dtPro} )
+        res.render('./admin/categories/cate',{data:dtPro} )
     },
     getCreateCate: async(req,res) => {
-        res.render('./categories/catecre' )
+        res.render('./admin/categories/catecre' )
     },
     postCreateCate:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await cateModel.getdetailCate(genId)
-        return res.render("./categories/cateDetail", {cateDetail: data})
+        return res.render("./admin/categories/cateDetail", {cateDetail: data})
        
     },
     getdeleCate: async(req,res) => {

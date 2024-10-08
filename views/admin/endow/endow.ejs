@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h2>Maketing Endow</h2> 
+                      
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Image</th>
+                          <th>Discount</th>
+                          <th>Description</th>
+                          
+                         
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i =0 ; i < data.length; i++) {%>
+                        <tr>
+                          <td><%= data[i].id %></td>
+                          <td><%= data[i].name %></td>
+                          <td><img src="../<%= data[i].image %>" class=" img-fluid" width="20px" height="5px"></td>
+                          <td><%= data[i].discount %></td>
+                          <td><%= data[i].description %></td>
+                          
+                          <td><a href="/admin/en/<%= data[i].id %>">View
+                            /<a href="/admin/endele/<%= data[i].id %>">Delete</a></td>
+                  
+                        </tr>
+                        <% }%>
+                        
+                      </tbody>
+                    </table>
+                
+          
+                </div>
+                <a href="/admin/create-endow" class="btn btn-dark">Create</a>
+            </div>
+            
+          </div>
+  </body>
+</html>

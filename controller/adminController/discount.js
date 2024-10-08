@@ -5,10 +5,10 @@ module.exports = {
     // DISCOUNT
     getDiscount: async(req,res) =>{
         const dtPro = await disModel.getDiscount();
-        res.render('./discount/diss',{data:dtPro} )
+        res.render('./admin/discount/diss',{data:dtPro} )
     },
     getCreateDiscount: async(req,res) => {
-        res.render('./discount/disscre' )
+        res.render('./admin/discount/disscre' )
     },
     postCreateDiscount:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await disModel.getdetailDiscount(genId)
-        return res.render("./discount/dissDetail", {dissDetail: data})
+        return res.render("./admin/discount/dissDetail", {dissDetail: data})
        
     },
     getdeleDiscount: async(req,res) => {

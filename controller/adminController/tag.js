@@ -5,10 +5,10 @@ module.exports = {
     //TAGS
     getTag: async(req,res) =>{
         const dtPro = await tagModel.getTag();
-        res.render('./tags/tag',{data:dtPro} )
+        res.render('./admin/tags/tag',{data:dtPro} )
     },
     getCreateTag: async(req,res) => {
-        res.render('./tags/tagcre' )
+        res.render('./admin/tags/tagcre' )
     },
     postCreateTag:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await tagModel.getdetailTag(genId)
-        return res.render("./tags/tagDetail", {tagDetail: data})
+        return res.render("./admin/tags/tagDetail", {tagDetail: data})
        
     },
     getdeleTag: async(req,res) => {

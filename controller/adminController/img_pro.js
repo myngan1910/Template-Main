@@ -7,12 +7,12 @@ module.exports = {
      // IMG-PRODUCT
      getImg: async(req,res) =>{
         const dtPro = await img_proModel.getImg();
-        res.render('./image_product/img',{data:dtPro} )
+        res.render('./admin/image_product/img',{data:dtPro} )
     },
     getCreateImg: async(req,res) => {
         const data = await productModel.getProduct();
 
-        res.render('./image_product/imgcre', {productid: data} )
+        res.render('./admin/image_product/imgcre', {productid: data} )
     },
     postCreateImg:  async(req,res) => {
         const image = req.files;
@@ -36,7 +36,7 @@ module.exports = {
         const data1 = await productModel.getProduct();
         console.log(data)
 
-        return res.render("./image_product/imgDetail", {imgDetail: data, productid: data1})
+        return res.render("./admin/image_product/imgDetail", {imgDetail: data, productid: data1})
        
     },
     getdeleImg: async(req,res) => {

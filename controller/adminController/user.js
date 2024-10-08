@@ -9,12 +9,12 @@ module.exports = {
      // USER
      getUser: async(req,res) =>{
         const dtPro = await  userModel.getUser();
-        res.render('./users/user',{data:dtPro} )
+        res.render('./admin/users/user',{data:dtPro} )
     },
     getCreateUser: async(req,res) => {
         const data = await  roleModel.getRole();
 
-        res.render('./users/usercre', {roleid: data}  )
+        res.render('./admin/users/usercre', {roleid: data}  )
     },
     postCreateUser:  async(req,res) => {
         const image = req.file ;
@@ -46,7 +46,7 @@ module.exports = {
         const data=  await  userModel.getdetailUser(genId)
         const data1 = await roleModel.getRole();
 
-        return res.render("./users/userDetail", {userDetail: data, roleid: data1})
+        return res.render("./admin/users/userDetail", {userDetail: data, roleid: data1})
        
     },
     getdeleUser: async(req,res) => {

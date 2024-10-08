@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Products</h3> 
+                 
+                </div>
+                
+                <form action="/admin/pro/<%= proDetail.id %>" method="post" >
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" value="<%= proDetail.name %>" name="name">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price" value="<%= proDetail.price %>" name="price">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="description" value="<%= proDetail.description %>" name="description">
+                    <label for="classifid">Classifid:</label>
+                      <select type="text" class="form-control" value="<%= proDetail.classifid %>" name="classifid">
+                        <% for(var i=0; i< dataclass.length;i++){%>
+                           <option VALUE="<%=dataclass[i].id %>"><%=dataclass[i].id %></option>
+                       <%}%>
+                         </select>
+                    <label for="discountid">Discountid:</label>
+                      <select type="text" class="form-control" value="<%= proDetail.discountid %>" name="discountid">
+                        <% for(var i=0; i< datadis.length;i++){%>
+                            <option VALUE="<%=datadis[i].id %>"><%=datadis[i].id %></option>
+                        <%}%>
+                      </select>
+
+                    <label for="onsale">Onsale:</label>
+                    <input type="text" class="form-control" id="onsale" value="<%= proDetail.onsale %>" name="onsale">
+                    <label for="view">View:</label>
+                    <input type="text" class="form-control" id="view" value="<%= proDetail.view %>" name="view">
+                    <label for="size">Size:</label>
+                    <select type="text" class="form-control" value="<%= proDetail.size %>" name="size">
+                      <% for(var i=0; i< datasize.length;i++){%>
+                          <option VALUE="<%=datasize[i].id %>"><%=datasize[i].name %></option>
+                      <%}%>
+                          
+                    </select>
+                    <label for="color">Color:</label>
+                    <select type="text" class="form-control" value="<%= proDetail.color %>" name="color">
+                      <% for(var i=0; i< datacolor.length;i++){%>
+                          <option VALUE="<%=datacolor[i].id %>"><%=datacolor[i].name %></option>
+                      <%}%>
+                      
+                    </select>
+                       
+                         
+                          
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                 
+                   
+                  </form>
+                  <a href="/admin/product"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

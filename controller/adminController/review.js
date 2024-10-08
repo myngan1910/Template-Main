@@ -7,13 +7,14 @@ module.exports = {
      // REVIEW
      getRev: async(req,res) =>{
         const dtPro = await reviewModel.getRev();
-        res.render('./reviews/review',{data:dtPro} )
+        console.log(dtPro)
+        res.render('./admin/reviews/review',{data:dtPro} )
     },
     getCreateRev: async(req,res) => {
         const data = await userModel.getUser();
         const data1 = await productModel.getProduct();
 
-        res.render('./reviews/revcre', {userid: data, productid: data1}  )
+        res.render('./admin/reviews/revcre', {userid: data, productid: data1}  )
     },
     postCreateRev:  async(req,res) => {
         
@@ -33,10 +34,11 @@ module.exports = {
         const genId = parseInt(req.params.ID);
         console.log(genId)
         const data=  await reviewModel.getdetailRev(genId)
+        console.log(data)
         const data2 = await userModel.getUser();
         const data1 = await productModel.getProduct();
        
-        return res.render("./reviews/revDetail", {revDetail: data, userid: data2, productid: data1})
+        return res.render("./admin/reviews/revDetail", {revDetail: data, userid: data2, productid: data1})
        
     },
     getdeleRev: async(req,res) => {

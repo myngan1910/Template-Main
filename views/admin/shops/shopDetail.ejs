@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Shop</h3> 
+                     
+                </div>
+                
+                <form action="/admin/sho/<%= shopDetail.id %>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="<%= shopDetail.name %>" name="name">
+                        <label for="logo">Logo:</label>
+                        <img src="../../<%= shopDetail.logo %>" alt="" class=" img-fluid mt-3" width="200px"  >
+                        <input type="file"  name="logo" /><br>
+                        <label for="mail">Mail:</label>
+                        <input type="text" class="form-control" id="mail" value="<%= shopDetail.mail %>" name="mail">
+                        <label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" value="<%= shopDetail.phone %>" name="phone">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" value="<%= shopDetail.address %>" name="address">
+                        <label for="description">Description:</label>
+                        <input type="text" class="form-control" id="description" value="<%= shopDetail.description %>" name="description">
+                         
+                       
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                    
+                  </form>
+                  <a href="/admin/shop"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Comments</h3> 
+                 
+                </div>
+                
+                <form action="/admin/com/<%= comeDetail.id %>" method="post" >
+                    <div class="form-group">
+                        
+                        <label for="content">Content:</label>
+                          <input type="text" class="form-control" id="content" value="<%= comeDetail.content %>" name="content">
+                          <label for="userid">Userid:</label>
+                      <select type="text" class="form-control" value="<%= comeDetail.userid %>" name="userid">
+                        <% for(var i=0; i< datauser.length;i++){%>
+                           <option VALUE="<%=datauser[i].id %>"><%=datauser[i].id %></option>
+                       <%}%>
+                         </select>
+                      <label for="blogid">Blogid:</label>
+                      <select type="text" class="form-control" value="<%= comeDetail.blogid %>" name="blogid">
+                        <% for(var i=0; i< datablog.length;i++){%>
+                           <option VALUE="<%=datablog[i].id %>"><%=datablog[i].id %></option>
+                       <%}%>
+                         </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                 
+                   
+                  </form>
+                  <a href="/admin/comment"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

@@ -26,7 +26,7 @@ app.use(session({
 }));
 const userRouter = require('./router/userRouter.js')
 const adminRouter = require('./router/adminRouter.js')
-const login= require('./middleware/login.js')
+const checklogin= require('./middleware/view/login.js')
 app.use('/admin',  adminRouter)
 app.use('/', userRouter);
 // login.requireLogin, login.loginAdmin,

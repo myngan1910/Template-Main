@@ -5,10 +5,10 @@ module.exports = {
      // SIZE
      getSize: async(req,res) =>{
         const dtPro = await sizeModel.getSize();
-        res.render('./size/size',{data:dtPro} )
+        res.render('./admin/size/size',{data:dtPro} )
     },
     getCreateSize: async(req,res) => {
-        res.render('./size/sizecre' )
+        res.render('./admin/size/sizecre' )
     },
     postCreateSize:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await sizeModel.getdetailSize(genId)
-        return res.render("./size/sizeDetail", {sizeDetail: data})
+        return res.render("./admin/size/sizeDetail", {sizeDetail: data})
        
     },
     getdeleSize: async(req,res) => {

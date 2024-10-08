@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>Create Role</h3> 
+                 
+                </div>
+                
+                <form action="/admin/createrole" method="post">
+                  <div class="form-group">
+                     
+                    <label for="position">Possion:</label>
+                    <input type="text" class="form-control" id="position" value="" name="possion">
+                    
+
+                      
+                      
+                      
+                      
+                    </div>
+                  <button type="submit" class="btn btn-dark">Create</button>
+                </form>
+                 
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

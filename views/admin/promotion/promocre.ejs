@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row ">
+                  <h2>CreatePromotion </h2>
+                    <form action="/admin/createpromo" method="post" enctype="multipart/form-data">
+                       
+                      <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="" name="name">
+                        <label for="image">Image:</label>
+                        <img> <input type="file"  name="image" /><br>
+                        <label for="discount">Discount:</label>
+                        <input type="text" class="form-control" id="discount" value="" name="discount">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" value="" name="title">
+                        
+                        
+                        
+                      </div>
+                      <button type="submit" class="btn btn-dark">Create</button>
+                    </form>
+                
+          
+                </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

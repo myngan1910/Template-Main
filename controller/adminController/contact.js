@@ -5,7 +5,7 @@ module.exports = {
     // CONTACT
     getCtc: async(req,res) =>{
         const data = await contactModel .getCtc();
-        res.render('./contact/ctc',{data:data} )
+        res.render('./admin/contact/ctc',{data:data} )
     },
     
     postCreateCtc:  async(req,res) => {
@@ -26,7 +26,7 @@ module.exports = {
     getdetailCtc: async(req,res) => {
         const genId = parseInt(req.params.ID);
         const detailCtc =  await contactModel .getdetailCtc(genId)
-        return res.render('./contact/ctcDetail', {ctcDetail: detailCtc})
+        return res.render('./admin/contact/ctcDetail', {ctcDetail: detailCtc})
     },
     getdeleCtc: async(req,res) => {
         const genId = parseInt(req.params.ID);

@@ -5,10 +5,10 @@ module.exports = {
     
     getUser_class: async(req,res) =>{
         const dtPro = await userModel.getUser_class();
-        res.render('./user-class/class',{data:dtPro} )
+        res.render('./admin/user-class/class',{data:dtPro} )
     },
     getCreateUser_class: async(req,res) => {
-        res.render('./user-class/classcre' )
+        res.render('./admin/user-class/classcre' )
     },
     postCreateUser_class:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await userModel.getdetailUser_class(genId)
-        return res.render("./user-class/classDetail", {classDetail: data})
+        return res.render("./admin/user-class/classDetail", {classDetail: data})
        
     },
     getdeleUser_class: async(req,res) => {

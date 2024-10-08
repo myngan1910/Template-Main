@@ -5,19 +5,28 @@ const socialModel = require('../../model/adminModel/social.js')
 const serviceModel = require('../../model/adminModel/service.js')
 const productModel = require('../../model/adminModel/product.js');
 module.exports = {
-    getCart: async(req,res) => {
+    getCartInfor: async(req,res) => {
         const userid = parseInt(req.session.userId)
-        var cart 
+       
+        let cart
+        let account = 0;
         if( userid >= 0) {
-             cart = await productModel.getCart(userid)
+             cart = await productModel.getCart(userid);
+            
+        }
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+
+            }
         }
         
-        const shop = await shopModel.getShopInfo();
+       const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
-        // const product = await productModel.getProductt(genId)
-        // res.render('cart',{shop:shop, social:social, service:service,cart:cart})
+        res.render('./dashboard/cart',{shop:shop, social:social, service:service,cart:cart, account:account})
 
     },
     
+
 }

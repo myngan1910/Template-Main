@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>Create Product</h3> 
+                 
+                </div>
+                
+                <form action="/admin/createdpro" method="post">
+                  <div class="form-group">
+                     
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" value="" name="name">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price" value="" name="price">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="description" value="" name="description">
+                    <label for="classifid">Classifid:</label>
+                      <select type="text" class="form-control" value="" name="classifid">
+                        <% for(var i=0; i< dataclass.length;i++){%>
+                           <option VALUE="<%=dataclass[i].id %>"><%=dataclass[i].id %></option>
+                       <%}%>
+                         </select>
+                    <label for="discountid">Discountid:</label>
+                      <select type="text" class="form-control" value="" name="discountid">
+                        <% for(var i=0; i< datadis.length;i++){%>
+                            <option VALUE="<%=datadis[i].id %>"><%=datadis[i].id %></option>
+                        <%}%>
+                      </select>
+                    <label for="onsale">Onsale:</label>
+                    <input type="text" class="form-control" id="onsale" value="" name="onsale">
+                    <label for="view">View:</label>
+                    <input type="text" class="form-control" id="view" value="" name="view">
+                    <label for="size">Size:</label>
+                    <select type="text" class="form-control" value="" name="size">
+                      <% for(var i=0; i< datasize.length;i++){%>
+                          <option VALUE="<%=datasize[i].id %>"><%=datasize[i].name %></option>
+                      <%}%>
+                      
+                    </select>
+                    <label for="color">Color:</label>
+                    <select type="text" class="form-control" value="" name="color">
+                      <% for(var i=0; i< datacolor.length;i++){%>
+                          <option VALUE="<%=datacolor[i].id %>"><%=datacolor[i].name %></option>
+                      <%}%>
+                      
+                    </select>
+                      
+                      
+                    </div>
+                  <button type="submit" class="btn btn-dark">Create</button>
+                </form>
+                 
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

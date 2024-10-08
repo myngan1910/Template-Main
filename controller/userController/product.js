@@ -7,6 +7,7 @@ const socialModel = require('../../model/adminModel/social.js')
 const colorModel = require('../../model/adminModel/color.js')
 const sizeModel = require('../../model/adminModel/size.js')
 const reviewModel = require('../../model/adminModel/review.js')
+const product = require('../../model/adminModel/product.js')
 
 module.exports = {
     getProduct: async(req,res) => {
@@ -14,33 +15,46 @@ module.exports = {
         const genId = parseInt(req.params.ID);
       
         const product = await productModel.getProductt(genId);
-        const productt = await productModel.getProduct()
         const shop = await shopModel.getShopInfo();
         const service = await serviceModel.getService();
         const social = await socialModel.getSocial();
         const color = await colorModel.getColor();
         const size = await sizeModel.getSize();
-        var cart 
+        let cart
+        let account = 0;
         if( userid >= 0) {
-             cart = await productModel.getCart(userid,genId)
+             cart = await productModel.getCart(userid);
+            
+        }
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+              
+
+            }
         }
         const view = await productModel.increas(genId)
-        if(userid >= 0 ){
-        console.log(await productModel.getUser_pro(userid))
-        } 
-        res.render('product', {product:product,shop:shop, service:service, social:social, color:color,size:size, productt:productt, cart:cart})
+        
+        res.render('./dashboard/product', {product:product,shop:shop, service:service, social:social, color:color,size:size, cart:cart, account:account})
 
     },
     getviewProduct: async(req,res) => {
         const genId = parseInt(req.params.ID) || 1;
         
         const userid = parseInt(req.session.userId)
-        var cart 
+        let cart
+        let account = 0;
         if( userid >= 0) {
-             cart = await productModel.getCart(userid)
+             cart = await productModel.getCart(userid);
+            
         }
-        const product = await productModel.getProduct(genId);
-        const productt = await productModel.getProduct()
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+               
+
+            }
+        }
         const shop = await shopModel.getShopInfo();
         const service = await serviceModel.getService();
         const social = await socialModel.getSocial();
@@ -48,15 +62,15 @@ module.exports = {
         const size = await sizeModel.getSize();
         const pro = await productModel.getpageProduct((genId - 1)*2)
 
+
        
-        res.render('viewproduct', {product:product,shop:shop, service:service, social:social, color:color,size:size, productt:productt, cart:cart,currentpage:genId})
+        res.render('./dashboard/viewproduct', {product:pro,shop:shop, service:service, social:social, color:color,size:size,  cart:cart,currentpage:genId, account:account})
     
     },
     createCart: async(req,res) => {
         const id = parseInt(req.params.ID);
         const userid = parseInt(req.session.userId);
         const quatity = req.body.quantity;
-        console.log(userid)
        
 
         const create = await productModel.createCart(id,userid,quatity);
@@ -67,8 +81,9 @@ module.exports = {
     remove: async(req,res) => {
         const userid = parseInt(req.session.userId);
         const productid = parseInt(req.params.ID);
+        console.log(productid)
         const cart = await productModel.remove(userid,productid)
-         res.redirect(`/product/${productid}`)
+         res.redirect(`/cart`)
     },
 
     postRev:  async(req,res) => {

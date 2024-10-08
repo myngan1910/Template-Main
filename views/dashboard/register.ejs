@@ -1,0 +1,108 @@
+
+<%- include('../layout/dashboard/headview'); -%>
+<body class="js">
+	
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	
+	<!-- Eshop Color Plate -->
+	
+	<!-- /End Color Plate -->
+		
+		<!-- Header -->
+		<%- include('../layout/dashboard/headerr'); -%>
+		<!--/ End Header -->
+	
+		<!-- Breadcrumbs -->
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bread-inner">
+							<ul class="bread-list">
+								<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active"><a href="/register">Register</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Breadcrumbs -->
+				
+		<!-- Shop Login -->
+		<section class="shop login section">
+			<div class="container">
+				<div class="row"> 
+					<div class="col-lg-6 offset-lg-3 col-12">
+						<div class="login-form">
+							<h2>Register</h2>
+							<p>Please register in order to checkout more quickly</p>
+							<!-- Form -->
+							<form class="form" method="post" action="/register">
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<label>Your Name<span>*</span></label>
+											<input type="text" name="name" placeholder="" required="required">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label>Your Email<span>*</span></label>
+											<input type="mail" name="mail" placeholder="" required="required">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label>Your Password<span>*</span></label>
+											<input type="text" name="pass" placeholder="" required="required">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label>Address<span>*</span></label>
+											<input type="text" name="address1" placeholder="" required="required">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label>Phone<span>*</span></label>
+											<input type="text" name="phone" placeholder="" required="required">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group login-btn">
+											<button class="btn" type="submit">Register</button>
+											<a href="/login" class="btn">Login</a>
+										</div>
+										<div class="checkbox">
+											<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Sign Up for Newsletter</label>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!--/ End Form -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Login -->
+		
+		<!-- Start Footer Area -->
+		<%- include('../layout/dashboard/footer'); -%>
+		<!-- /End Footer Area -->
+		
+	<!-- Jquery -->
+    <%- include('../layout/dashboard/script'); -%>
+</body>
+</html>

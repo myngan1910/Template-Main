@@ -9,13 +9,13 @@ module.exports={
      // BLOG
      getBlog: async(req,res) =>{
         const dtPro = await blogModel.getBlog();
-        res.render('./blogs/blog',{data:dtPro} )
+        res.render('./admin/blogs/blog',{data:dtPro} )
     },
     getCreateBlog: async(req,res) => {
         const data = await userModel.getUser();
         const data1 = await cateModel.getCate()
         const data2 = await tagModel.getTag()
-        res.render('./blogs/blogcre', {userid: data, cate:data1, tag:data2 } )
+        res.render('./admin/blogs/blogcre', {userid: data, cate:data1, tag:data2 } )
     },
     postCreateBlog:  async(req,res) => {
         const image = req.file ;
@@ -40,7 +40,7 @@ module.exports={
         const data1 = await userModel.getUser();
         const data3 = await cateModel.getCate()
         const data2 = await tagModel.getTag()
-        return res.render("./blogs/blogDetail", {blogDetail: data, userid: data1,cate:data3, tag:data2})
+        return res.render("./admin/blogs/blogDetail", {blogDetail: data, userid: data1,cate:data3, tag:data2})
        
     },
     getdeleBlog: async(req,res) => {

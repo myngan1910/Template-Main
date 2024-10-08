@@ -1,0 +1,141 @@
+
+<%- include('../layout/dashboard/headview'); -%>
+<body class="js">
+	
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	
+	<!-- Eshop Color Plate -->
+	<div class="color-plate ">
+		<a class="color-plate-icon"><i class="ti-paint-bucket"></i></a>
+		<h4>Eshop Colors</h4>
+		<p>Here is some awesome color's available on Eshop Template.</p>
+		<span class="color1"></span>
+		<span class="color2"></span>
+		<span class="color3"></span>
+		<span class="color4"></span>
+		<span class="color5"></span>
+		<span class="color6"></span>
+		<span class="color7"></span>
+		<span class="color8"></span>
+		<span class="color9"></span>
+		<span class="color10"></span>
+		<span class="color11"></span>
+		<span class="color12"></span>
+	</div>
+	<!-- /End Color Plate -->
+		
+		<!-- Header -->
+		<%- include('../layout/dashboard/headerr');-%>
+		<!--/ End Header -->
+		
+		<!-- Breadcrumbs -->
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bread-inner">
+							<ul class="bread-list">
+								<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active"><a href="/blog">Blog</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Breadcrumbs -->
+		
+		<!-- Product Style -->
+		<section class="product-area shop-sidebar shop section">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-lg-9 col-md-8 col-12">
+						
+						<div class="row" >
+                            <% for(var i=0; i < blog.length; i++){%>
+								<div class="col-lg-4 col-md-6 col-12" style="margin-bottom: 50px">
+									<a href="/blog/<%= blog[i].id %>">
+									<!-- Start Single Blog  -->
+									<div class="shop-single-blog">
+										<img src="/<%= blog[i].image %>" alt="image" style="width: 390px;height: 290px;">
+										<div class="content" style="text-align: center;margin-top: 20px;">
+											<p class="date"><%= blog[i].time %></p>
+											<b ><%= blog[i].description1 %></b> <br>
+											<a href="/blog/<%= blog[i].id %>" class="more-btn">Continue Reading</a>
+										</div>
+									</div>
+								</a>
+									<!-- End Single Blog  -->
+								</div>
+                           <%}%>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				
+				<div class="pagination" style="text-align: center;margin-bottom: 50px;">
+					<ul class="pagination-list">
+						
+						<li>
+							<a id="prevBtn" href="<%= currentpage > 1 ? '/blog/page/' + (currentpage - 1) : '#' %>" 
+							   class="<%= currentpage <= 1 ? 'disabled' : '' %>">
+							   Prev
+							</a>
+						</li>
+						
+						
+						<% for (var i = 1; i <= 2; i++) { %>
+							<li class="<%= currentpage === i ? 'active' : '' %>">
+								<a href="/blog/page/<%= i %>">
+									<%= i %>
+								</a>
+							</li>
+						<% } %>
+			
+					
+						<li>
+							<a id="nextBtn" href="<%= currentpage < 2 ? '/blog/page/' + (currentpage + 1) : '#' %>" 
+							   class="<%= currentpage >= 2 ? 'disabled' : '' %>">
+							   Next
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--/ End Pagination -->
+			</div>
+		</section>
+		
+		<!--/ End Product Style 1  -->	
+
+		<!-- Start Shop Newsletter  -->
+		
+		<!-- End Shop Newsletter -->
+		
+		
+		
+		<!-- Modal -->
+			
+			<!-- Modal end -->
+		
+		<!-- Start Footer Area -->
+		<%- include('../layout/dashboard/footer');-%>
+		<!-- /End Footer Area -->
+	
+	
+    <!-- Jquery -->
+    <%- include('../layout/dashboard/scriptblog');-%>
+</body>
+</html>

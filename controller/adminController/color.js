@@ -5,10 +5,10 @@ module.exports = {
     
     getColor: async(req,res) =>{
         const dtPro = await colorModel.getColor();
-        res.render('./color/color',{data:dtPro} )
+        res.render('./admin/color/color',{data:dtPro} )
     },
     getCreateColor: async(req,res) => {
-        res.render('./color/colorcre' )
+        res.render('./admin/color/colorcre' )
     },
     postCreateColor:  async(req,res) => {
         const name = req.body.name;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await colorModel.getdetailColor(genId)
-        return res.render("./color/colorDetail", {colorDetail: data})
+        return res.render("./admin/color/colorDetail", {colorDetail: data})
        
     },
     getdeleColor: async(req,res) => {

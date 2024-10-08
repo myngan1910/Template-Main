@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Endow</h3> 
+                     
+                </div>
+                
+                <form action="/admin/endow/<%= endowDetail.id %>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="<%= endowDetail.name %>" name="name">
+                        <label for="logo">Image:</label>
+                        <img src="../../<%= endowDetail.image %>" alt="" class=" img-fluid mt-3" width="200px"  >
+                        <input type="file"  name="image" /><br>
+                       
+                       
+                        <label for="discount">Discount:</label>
+                        <input type="text" class="form-control" id="discount" value="<%= endowDetail.discount %>" name="discount">
+                        <label for="description">Description:</label>
+                        <input type="text" class="form-control" id="description" value="<%= endowDetail.description %>" name="description">
+                       
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                    
+                  </form>
+                  <a href="/admin/endow"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

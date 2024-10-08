@@ -6,10 +6,10 @@ module.exports = {
     // SERVICE
     getService: async(req,res) =>{
         const dtShop = await  serviceModel.getService();
-        res.render('./service/service', {data:dtShop})
+        res.render('./admin/service/service', {data:dtShop})
     },
     getCreateService: async(req,res) =>{
-        res.render('./service/servicecre')
+        res.render('./admin/service/servicecre')
     },
     postCreateService:  async(req,res) => {
         const name = req.body.name;
@@ -28,7 +28,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const detail=  await  serviceModel.getDetailService(genId)
-        return res.render("./service/serviceDetail", {serviceDetail: detail})
+        return res.render("./admin/service/serviceDetail", {serviceDetail: detail})
 
     },
     getDeleteService: async(req,res) => {

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h2> Image </h2> 
+                      
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Image</th>
+                          <th>Productid</th>
+
+                       
+                        
+                         
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i =0 ; i < data.length; i++) {%>
+                        <tr>
+                          <td><%= data[i].id %></td>
+                          <td><img src="../<%= data[i].image %>" class=" img-fluid" width="20px" height="5px"></td>
+                          <td><%= data[i].productid %></td>
+                          <td><a href="/admin/ima/<%= data[i].id %>">View
+                            /<a href="/admin/imgdele/<%= data[i].id %>">Delete</a></td>
+                  
+                        </tr>
+                        <% }%>
+                        
+                      </tbody>
+                    </table>
+                
+          
+                </div>
+                <a href="/admin/create-img" class="btn btn-dark">Create</a>
+            </div>
+            
+          </div>
+  </body>
+</html>

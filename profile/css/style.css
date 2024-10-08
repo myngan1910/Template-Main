@@ -3264,7 +3264,7 @@ Version:1.0
 	margin-top: 30px;
 	background: #fff;
 	padding: 15px 0 30px 0;
-	border: 1px solid #eee;
+
 }
 .shop.checkout .single-widget {
 	margin-bottom: 30px;
@@ -4998,3 +4998,79 @@ Version:1.0
 	End Footer CSS
 ===============================*/
 
+  /* Ẩn danh sách khi chưa hover */
+  .main-category {
+	display: none;
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	position: absolute;
+	z-index: 100;
+}
+/* header điều chỉnh categaries */
+
+/* Hiển thị danh sách khi hover vào phần tiêu đề hoặc vào danh sách */
+.cat-heading:hover + .main-category,
+.main-category:hover {
+	display: block;
+}
+
+/* Tùy chỉnh hiển thị của danh sách */
+.main-category li {
+	padding: 10px 15px;
+}
+
+.main-category li a {
+	text-decoration: none;
+	color: #333;
+	display: block;
+}
+
+.main-category li a:hover {
+	background-color: #e0e0e0;
+}
+
+/* Đảm bảo rằng phần tử cha giữ được vị trí tương đối */
+.cat-heading {
+	position: relative;
+	cursor: pointer;
+}
+
+/* hiển thị chỗ my account */
+.dropdown-menu {
+        display: none;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        position: absolute;
+        z-index: 100;
+        width: 150px;
+    }
+
+    .dropdown-menu li {
+        padding: 8px 15px;
+    }
+
+    .dropdown-menu li a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #e0e0e0;
+    }
+
+    .account-menu {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Hiển thị dropdown khi hover vào li.account-menu */
+    .account-menu:hover .dropdown-menu {
+        display: block;
+    }

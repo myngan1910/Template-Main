@@ -6,12 +6,12 @@ module.exports ={
     // ORDER
     getOrder: async(req,res) =>{
         const dtPro = await orderModel.getOrder();
-        res.render('./orders/order',{data:dtPro} )
+        res.render('./admin/orders/order',{data:dtPro} )
     },
     getCreateOrder: async(req,res) => {
         const data1 = await userModel.getUser();
 
-        res.render('./orders/ordercre', {userid: data1} )
+        res.render('./admin/orders/ordercre', {userid: data1} )
     },
     postCreateOrder:  async(req,res) => {
        
@@ -28,7 +28,7 @@ module.exports ={
         const data=  await orderModel.getdetailOrder(genId)
         const data1 = await userModel.getUser();
 
-        return res.render("./orders/orderDetail", {orderDetail: data, userid: data1})
+        return res.render("./admin/orders/orderDetail", {orderDetail: data, userid: data1})
        
     },
     getdeleOrder: async(req,res) => {

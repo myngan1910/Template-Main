@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>Create Review</h3> 
+                 
+                </div>
+                
+                <form action="/admin/createdrev" method="post">
+                  <div class="form-group">
+                     
+                    <label for="content">Content:</label>
+                    <input type="text" class="form-control" id="content" value="" name="content">
+                    <label for="evaluate">Evaluate:</label>
+                    <input type="text" class="form-control" id="evaluate" value="" name="evaluate">
+                    
+                    <label for="userid">Userid:</label>
+                    <select type="text" class="form-control" value="" name="userid">
+                      <% for(var i=0; i< userid.length;i++){%>
+                         <option VALUE="<%=userid[i].id %>"><%=userid[i].id %></option>
+                     <%}%>
+                       </select>
+                       <label for="productid">Productid:</label>
+                       <select type="text" class="form-control" value="" name="productid">
+                         <% for(var i=0; i< productid.length;i++){%>
+                            <option VALUE="<%=productid[i].id %>"><%=productid[i].id %></option>
+                        <%}%>
+                          </select>
+
+                      
+                      
+                      
+                    </div>
+                  <button type="submit" class="btn btn-dark">Create</button>
+                </form>
+                 
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

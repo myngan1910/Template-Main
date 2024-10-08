@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Blog</h3> 
+                 
+                </div>
+                
+                <form action="/admin/blog/<%= blogDetail.id %>" method="post"  enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <img src="../../<%= blogDetail.image %>" alt="" class=" img-fluid mt-3" width="200px"  >
+                        <input type="file"  name="image" /><br>
+                        <label for="time">Time:</label>
+                        <input type="text" class="form-control" id="time" value="<%= blogDetail.time %>" name="time">
+                        <label for="description1">Description1:</label>
+                        <input type="text" class="form-control" id="description1" value="<%= blogDetail.description1 %>" name="description1">
+                        <label for="description2">Description2:</label>
+                        <input type="text" class="form-control" id="description2" value="<%= blogDetail.description2 %>" name="description2">
+                        <label for="creater">Creater:</label>
+                        <input type="text" class="form-control" id="createrr" value="<%= blogDetail.creater %>" name="creater">
+                        <label for="userid">Userid:</label>
+                        <select type="text" class="form-control" value="<%= blogDetail.userid %>" name="userid">
+                            <% for(var i=0; i< userid.length;i++){%>
+                               <option VALUE="<%=userid[i].id %>"><%=userid[i].id %></option>
+                           <%}%>
+                             </select>
+                             
+                        <label for="cate">Categories:</label>
+                        <select type="text" class="form-control" value="<%= blogDetail.categories %>" name="cate">
+                            <% for(var i=0; i< cate.length;i++){%>
+                                <option VALUE="<%=cate[i].id %>"><%=cate[i].name %></option>
+                            <%}%>
+                            </select>
+                        <label for="tag">Tags:</label>
+                        <select type="text" class="form-control" value="<%= blogDetail.tag %>" name="tag">
+                            <% for(var i=0; i< tag.length;i++){%>
+                                <option VALUE="<%=tag[i].id %>"><%=tag[i].name %></option>
+                            <%}%>
+                                </select>          
+                          
+                       
+                         
+                          
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                 
+                   
+                  </form>
+                  <a href="/admin/blog"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,67 @@
+
+                        
+                 
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+          <div class="col-lg-9  ">
+            <div class="row text-center">
+                <h3>Create User</h3> 
+             
+            </div>
+            
+            <form action="/admin/createuser" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                 
+                <label for="avata">Avata:</label>
+                <img> <input type="file"  name="avata" /><br>
+                <label for="fname">First Name:</label>
+                <input type="text" class="form-control" id="fname" value="" name="fname">
+                <label for="lname">Last Name:</label>
+                <input type="text" class="form-control" id="lname" value="" name="lname">
+                <label for="mail">Mail:</label>
+                <input type="text" class="form-control" id="mail" value="" name="mail">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" value="" name="phone">
+                <label for="address1">Address 1:</label>
+                <input type="text" class="form-control" id="address1" value="" name="address1">
+                <label for="adddress2">Address 2:</label>
+                <input type="text" class="form-control" id="address2" value="" name="address2">
+                <label for="pass">Pass:</label>
+                <input type="text" class="form-control" id="pass" value="" name="pass">
+                <label for="postal">Postal:</label>
+                <input type="text" class="form-control" id="postal" value="" name="postal">
+                <label for="contry">Contry:</label>
+                <input type="text" class="form-control" id="contry" value="" name="contry">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" id="state" value="" name="state">
+                <label for="company">Company:</label>
+                <input type="text" class="form-control" id="company" value="" name="company">
+                <label for="roleid">Roleid:</label>
+                  <select type="text" class="form-control" value="" name="roleid">
+                    <% for(var i=0; i< roleid.length;i++){%>
+                       <option VALUE="<%=roleid[i].id %>"><%=roleid[i].id %></option>
+                   <%}%>
+                     </select>
+                
+               
+                  
+                  
+                  
+                  
+                </div>
+              <button type="submit" class="btn btn-dark">Create</button>
+            </form>
+             
+        </div>
+            
+        </div>
+    </div>
+    
+  </body>
+</html>
+

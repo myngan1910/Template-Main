@@ -6,10 +6,10 @@ module.exports = {
     // ENDOW
     getPro: async(req,res) =>{
         const dtShop = await  proModel.getPro();
-        res.render('./promotion/promo', {data:dtShop})
+        res.render('./admin/promotion/promo', {data:dtShop})
     },
     getCreatePro: async(req,res) =>{
-        res.render('./promotion/promocre')
+        res.render('./admin/promotion/promocre')
     },
     postCreatePro:  async(req,res) => {
         const name = req.body.name;
@@ -28,7 +28,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const detail=  await  proModel.getDetailPro(genId)
-        return res.render("./promotion/promoDetail", {promoDetail: detail})
+        return res.render("./admin/promotion/promoDetail", {promoDetail: detail})
 
     },
     getDeletePro: async(req,res) => {

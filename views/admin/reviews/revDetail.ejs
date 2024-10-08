@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Review</h3> 
+                 
+                </div>
+                
+                <form action="/admin/rev/<%= revDetail.id %>" method="post" >
+                    <div class="form-group">
+                    <label for="content">Content:</label>
+                    <input type="text" class="form-control" id="content" value="<%= revDetail.content %>" name="content">
+                    <label for="evaluate">Evaluate:</label>
+                    <input type="text" class="form-control" id="evaluate" value="<%= revDetail.evaluate %>" name="evaluate">
+                    
+                    <label for="userid">Userid:</label>
+                    <select type="text" class="form-control" value="<%= revDetail.userid %>" name="userid">
+                      <% for(var i=0; i< userid.length;i++){%>
+                         <option VALUE="<%=userid[i].id %>"><%=userid[i].id %></option>
+                     <%}%>
+                       </select>
+                       <label for="productid">Productid:</label>
+                       <select type="text" class="form-control" value="<%= revDetail.productid %>" name="productid">
+                         <% for(var i=0; i< productid.length;i++){%>
+                            <option VALUE="<%=productid[i].id %>"><%=productid[i].id %></option>
+                        <%}%>
+                          </select>
+
+                    
+                          
+                          
+                       
+                         
+                          
+                    </div>
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                 
+                   
+                  </form>
+                  <a href="/admin/product"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+        </div>
+    </div>
+    
+  </body>
+</html>

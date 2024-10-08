@@ -34,7 +34,7 @@ module.exports = {
     getpageBlog: async(blog) => {
         const data = await client.blogs.findMany({
             skip: blog,
-            take: 2,
+            take: 3,
             select: {
                id: true,
                image: true,

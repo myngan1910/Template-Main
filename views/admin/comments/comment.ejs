@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h2>COMMENTS</h2> 
+                      
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Content</th>
+                          <th>Userid</th>
+                          <th>Blogid</th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i =0 ; i < data.length; i++) {%>
+                        <tr>
+                          <td><%= data[i].id %></td>
+                          <td><%= data[i].content %></td>
+                          <td><%= data[i].userid %></td>
+                          <td><%= data[i].blogid %></td>
+                          <td><a href="/admin/comm/<%= data[i].id %>">View
+                            /<a href="/admin/comdele/<%= data[i].id %>">Delete</a></td>
+                  
+                        </tr>
+                        <% }%>
+                        
+                      </tbody>
+                    </table>
+                
+          
+                </div>
+            </div>
+            
+          </div>
+  </body>
+</html>

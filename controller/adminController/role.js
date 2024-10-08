@@ -5,10 +5,10 @@ module.exports = {
       //ROLE
       getRole: async(req,res) =>{
         const dtPro = await roleModel.getRole();
-        res.render('./role/role',{data:dtPro} )
+        res.render('./admin/role/role',{data:dtPro} )
     },
     getCreateRole: async(req,res) => {
-        res.render('./role/rolecre' )
+        res.render('./admin/role/rolecre' )
     },
     postCreateRole:  async(req,res) => {
         const position = req.body.possion;
@@ -23,7 +23,7 @@ module.exports = {
        
         const genId = parseInt(req.params.ID);
         const data=  await roleModel.getdetailRole(genId)
-        return res.render("./role/roleDetail", {roleDetail: data})
+        return res.render("./admin/role/roleDetail", {roleDetail: data})
        
     },
     getdeleRole: async(req,res) => {

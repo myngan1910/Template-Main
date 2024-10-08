@@ -6,13 +6,13 @@
 module.exports = {
     getComment: async(req,res) =>{
         const comment = await comModel.getComment();
-        res.render('./comments/comment',{data:comment} )
+        res.render('./admin/comments/comment',{data:comment} )
     },
     createCom: async(req,res) => {
         const time = Date.now()
         const da = await blogModel.getBlog();
         const data = await userModel.getUser();
-        res.render('./comments/commentcre',{datauser:data,datablog:da}  )
+        res.render('./admin/comments/commentcre',{datauser:data,datablog:da}  )
     },
     postCreateCom:  async(req,res) => {
       
@@ -32,7 +32,7 @@ module.exports = {
         const da = await blogModel.getBlog();
         const data = await userModel.getUser();
         const data1 =  await comModel.getdetailCom(genId)
-        return res.render("./comments/comeDetail", {comeDetail: data1, datablog:da, datauser:data})
+        return res.render("./admin/comments/comeDetail", {comeDetail: data1, datablog:da, datauser:data})
     },
     getdeleCom: async(req,res) => {
         const genId = parseInt(req.params.ID);

@@ -4,7 +4,7 @@ const adminModel = require('../model/adminModel.js')
 module.exports = {
     getAdmin: async(req,res) =>{
 
-        res.render('index1')
+        res.render('./admin/admin-index')
     },
 
    

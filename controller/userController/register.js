@@ -16,7 +16,7 @@ module.exports = {
         if( cart > 1) {
              cart = await productModel.getCart(userid)
         }
-        res.render('register',{shop:shop, social:social, service:service, cart: cart})
+        res.render('./dashboard/register',{shop:shop, social:social, service:service, cart: cart})
 
     },
     postRegister: async(req,res) => {
