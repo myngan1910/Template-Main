@@ -8,6 +8,7 @@ module.exports = {
             select: {
               id: true,
                userrid: true,
+               active: true,
                userr: {
                 select: {
                     avata: true,
@@ -23,9 +24,31 @@ module.exports = {
                     roleid: true
                     
                 }
+               },
+               products: {
+                select: {
+                    id: true,
+                    quanlity: true,
+                    product: {
+                        select: {
+                            price: true,
+                            name: true,
+                            image: {
+                                select: {
+                                    image:true
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                
                }
+               
             }
+            
         });
+       
      
 
        return data;
@@ -69,4 +92,51 @@ module.exports = {
     })
     return update;
     
-    },}
+    },
+    getpageOrder: async () => {
+        const data = await client.orders.findMany({
+          where: {
+            active: 1,
+          },
+          select: {
+            id: true,
+            userrid: true,
+            active: true,
+            userr: {
+              select: {
+                avata: true,
+                fname: true,
+                lname: true,
+                mail: true,
+                phone: true,
+                address1: true,
+                address2: true,
+                postal: true,
+                contry: true,
+                state: true,
+                roleid: true,
+              },
+            },
+            products: {
+              select: {
+                id: true,
+                quanlity: true, 
+                product: {
+                  select: {
+                    price: true, 
+                    name: true,
+                    image: {
+                      select: {
+                        image: true, 
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        });
+      
+        return data;
+      }
+}

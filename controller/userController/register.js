@@ -12,11 +12,20 @@ module.exports = {
         const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
-        var cart 
-        if( cart > 1) {
-             cart = await productModel.getCart(userid)
-        }
-        res.render('./dashboard/register',{shop:shop, social:social, service:service, cart: cart})
+        let cart
+       let account = 0;
+       if( userid >= 0) {
+            cart = await productModel.getCart(userid);
+           
+       }
+       if(cart != undefined){
+           for (var i=0; i < cart.length; i++ ){
+               account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+              
+
+           }
+       }
+        res.render('./dashboard/register',{shop:shop, social:social, service:service, cart: cart,account:account})
 
     },
     postRegister: async(req,res) => {

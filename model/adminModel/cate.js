@@ -7,6 +7,12 @@ module.exports = {
         const data = await client.categories.findMany();
        return data;
     },
+    checkCate: async(name) => {
+        const data = await client.categories.findMany({
+            where: {name:name}
+        });
+       return data;
+    },
     postCreateCate : async(name) => {
     const create =await client.categories.create({
         data: {

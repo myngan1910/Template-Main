@@ -5,7 +5,7 @@ module.exports = {
     // DISCOUNT
     getDiscount: async(req,res) =>{
         const dtPro = await disModel.getDiscount();
-        res.render('./admin/discount/diss',{data:dtPro} )
+        res.render('./admin/discount/diss',{data:dtPro,  errorMessage: ''} )
     },
     getCreateDiscount: async(req,res) => {
         res.render('./admin/discount/disscre' )

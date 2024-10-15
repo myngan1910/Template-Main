@@ -25,6 +25,7 @@
                                     <a href="#">My account</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/profile">Profile</a></li> <br>
+                                        <li><a href="/order">Order</a></li> <br>
                                         <li><a href="/logout">Logout</a></li>
                                     </ul>
                                 </li>
@@ -80,7 +81,9 @@
                     <div class="right-bar">
                         <!-- Search Form -->
                        
-                        
+                        <div class="sinlge-bar">
+                            <a href="/like" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
                         <div class="sinlge-bar shopping">
                             <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">
                                 <% if(cart != undefined) { %>
@@ -134,7 +137,7 @@
                                 <div class="navbar-collapse">	
                                     <div class="nav-inner">	
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="/">Home</a></li>
+                                            <li ><a href="/">Home</a></li>
                                             <li><a href="/view">Product</a>
                                                 </li>												
                                             <!-- <li><a href="/">Service</a></li> -->

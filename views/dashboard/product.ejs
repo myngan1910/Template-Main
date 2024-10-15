@@ -85,8 +85,9 @@
 											<div class="short">
 												<h4><%= product.name%></h4>
 												
-												<p class="price"><span class="discount"><%= product.price%></s> </p>
+												<p class="price"><span class="discount">$<%= product.price%></s> </p>
 												<p class="description"><%= product.description%></p>
+												<p class="quanlity"><h6> Quantity:  <%= product.quanlity%></p></h6> <br>
 											</div>
 											<!--/ End Description -->
 											<!-- Color -->
@@ -139,8 +140,10 @@
 												
 												<div class="add-to-cart">
 													<button  class="btn" type="submit">Add to cart</button>
+													<a href="/product/like/<%= product.id%>" class="btn min"><i class="ti-heart"></i></a>
 													
 												</div>
+
 												<!-- <p class="cat">Category :<a href="#">Clothing</a></p> -->
 												<!-- <p class="availability">Availability : 180 Products In Stock</p> -->
 											</div>

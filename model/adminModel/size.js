@@ -9,6 +9,12 @@ module.exports = {
         const data = await client.size.findMany();
        return data;
     },
+    checkname: async(name) => {
+        const data = await client.size.findMany({
+            where: {name:name}
+        });
+       return data;
+    },
     postCreateSize : async(name) => {
     const create =await client.size.create({
         data: {

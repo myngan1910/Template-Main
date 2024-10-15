@@ -4,7 +4,7 @@ const socialModel = require('../../model/adminModel/social.js')
 module.exports = {
     getSocial: async(req,res) =>{
         const data = await socialModel.getSocial();
-        res.render('./admin/social/social',{data:data} )
+        res.render('./admin/social/social',{data:data,  errorMessage: ''} )
     },
     getCreateSocial: async(req,res) => {
         res.render('./admin/social/socialcre' )

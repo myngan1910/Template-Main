@@ -52,7 +52,7 @@ module.exports = {
     getdeleUser: async(req,res) => {
         const genId = parseInt(req.params.ID);
      
-        const delePro =  await adminModel.getdeleUser(genId)
+        const delePro =  await userModel.getdeleUser(genId)
         res.redirect(`/admin/user`)
         
     },

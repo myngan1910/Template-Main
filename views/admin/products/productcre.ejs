@@ -8,7 +8,11 @@
             <div class="col-lg-9  ">
                 <div class="row text-center">
                     <h3>Create Product</h3> 
-                 
+                    <% if (errorMessage) { %> 
+                      <div class="alert alert-danger">
+                        <%= errorMessage %> 
+                      </div>
+                    <% } %>
                 </div>
                 
                 <form action="/admin/createdpro" method="post">
@@ -20,6 +24,8 @@
                     <input type="text" class="form-control" id="price" value="" name="price">
                     <label for="description">Description:</label>
                     <input type="text" class="form-control" id="description" value="" name="description">
+                    <label for="quanlity">Quanlity:</label>
+                    <input type="text" class="form-control" id="quanlity" value="" name="quanlity">
                     <label for="classifid">Classifid:</label>
                       <select type="text" class="form-control" value="" name="classifid">
                         <% for(var i=0; i< dataclass.length;i++){%>

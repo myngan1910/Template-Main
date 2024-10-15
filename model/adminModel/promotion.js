@@ -7,6 +7,12 @@ module.exports = {
         const data = await client.promotion.findMany(); 
        return data;
     },
+    checkname: async(name) => {
+        const data = await client.promotion.findMany({
+            where: {name:name}
+        }); 
+       return data;
+    },
 
     postCreatePro : async(name,img,dis,title) => {
        

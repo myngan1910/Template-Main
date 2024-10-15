@@ -5,7 +5,7 @@ module.exports = {
     //CATEGORIES
     getCate: async(req,res) =>{
         const dtPro = await cateModel.getCate();
-        res.render('./admin/categories/cate',{data:dtPro} )
+        res.render('./admin/categories/cate',{data:dtPro,  errorMessage: ''} )
     },
     getCreateCate: async(req,res) => {
         res.render('./admin/categories/catecre' )

@@ -5,7 +5,7 @@ module.exports = {
       //ROLE
       getRole: async(req,res) =>{
         const dtPro = await roleModel.getRole();
-        res.render('./admin/role/role',{data:dtPro} )
+        res.render('./admin/role/role',{data:dtPro,  errorMessage: ''} )
     },
     getCreateRole: async(req,res) => {
         res.render('./admin/role/rolecre' )

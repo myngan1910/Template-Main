@@ -7,6 +7,15 @@ module.exports = {
         const data = await client.mkt_endow.findMany(); 
        return data;
     },
+    
+    checkname: async(name) => {
+        const data = await client.mkt_endow.findMany({
+            where: {name:name}
+        }
+            
+        ); 
+       return data;
+    },
 
     postCreateEndow : async(name,img,dis,des) => {
         console.log(1)

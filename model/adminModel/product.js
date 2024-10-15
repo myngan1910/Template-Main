@@ -9,6 +9,7 @@ module.exports = {
                 name: true,
                 price: true,
                 description: true,
+                quanlity: true,
                 classifid: true,
                 image: {
                     select: {
@@ -39,6 +40,11 @@ module.exports = {
 
        return data; 
     },
+    checkname: async(name) => {
+       const data = await client.products.findMany({
+        where: {name:name}
+       })
+    }, 
     getpageProduct: async(pro) => {
         const data = await client.products.findMany({
             skip: pro,
@@ -48,6 +54,7 @@ module.exports = {
                 name: true,
                 price: true,
                 description: true,
+                quanlity:true,
                 classifid: true,
                 image: {
                     select: {
@@ -86,6 +93,7 @@ module.exports = {
                 name: true,
                 price: true,
                 description: true,
+                quanlity:true,
                 classifid: true,
                 image: {
                     select: {
@@ -124,13 +132,68 @@ module.exports = {
 
        return data; 
     },
-    postCreateProduct : async(name,price,des,clas,dis,ons,view,size, color) => {
+    getlikeProduct: async(userid) => {
+        const data = await client.like_product.findMany({
+            where: {
+                userid: userid 
+            },
+            select: {
+                id: true,  
+                userid: true, 
+                productid: true,
+                product: {  
+                    select: {
+                        name: true,
+                        price: true,
+                        description: true,
+                        quanlity: true,
+                        classifid: true,
+                        image: {
+                            select: {
+                                image: true
+                            }
+                        },
+                        classify: {
+                            select: {
+                                name: true
+                            }
+                        },
+                        discountid: true,
+                        discount: {
+                            select: {
+                                name: true
+                            }
+                        },
+                        onsale: true,
+                        view: true,
+                        review: {
+                            select: {
+                                content: true,
+                                evaluate: true,
+                                user: {
+                                    select: {
+                                        lname: true,
+                                        avata: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        return data;
+        
+    },
+    
+    postCreateProduct : async(name,price,des,quant,clas,dis,ons,view,size, color) => {
         
     const creat =await client.products.create({
         data: {
             name: name,
             price: price,
             description: des,
+            quanlity: quant,
             classifid: clas,
             discountid: dis,
             onsale: 0,
@@ -196,7 +259,7 @@ module.exports = {
        return {data,dele1,dele2,dele3,dele4};
     
     },
-    postProduct: async(genId,name,price,des,clas,dis,ons,view,size, color) => {
+    postProduct: async(genId,name,price,des,quant,clas,dis,ons,view,size, color) => {
        
 
     const update = await client.products.update({
@@ -205,6 +268,7 @@ module.exports = {
             name: name,
             price: price,
             description: des,
+            quanlity: quant,
             classifid: clas,
             discountid: dis,
             onsale: ons,
@@ -389,18 +453,70 @@ module.exports = {
         return data
      },
 
-     postOrder: async(idproduct, quant) => {
-       const data = client.order_product.create({
-        data: {
-            
-            productid: idproduct,
-            quanlity: quant
-        }
-
+     postCheck: async(idproduct, quanlity, userid) => {
+       const order = await client.orders.findMany({
+      where: {
+        userrid: userid,
+        active: 0
+      },
+      select: {
+        id: true
+      }
        })
-     }
+   if(order.length <= 0) {
+    var orders = await client.orders.create({
+        data: {
+            userrid: userid,
+            active: 0
+        }
+    })
+    const newoder = await client.orders.findMany({
+        where: {
+          userrid: userid,
+          active: 0
+        },
+        select: {
+          id: true
+        }
+         })
+        for(var i = 0; i < idproduct.length; i++){
+         const data = await client.order_product.create({
+            data: {
+                orderid: newoder[0].id,
+                productid: parseInt(idproduct[i]),
+                quanlity: quanlity[i].toString()
+                }
+        })
+   }}else {
+    const dele = await client.order_product.deleteMany({where:{orderid: order[0].id} })
+    for(var i = 0; i < idproduct.length; i++){
+    const data = await client.order_product.create({
+        data: {
+            orderid: order[0].id,
+            productid: parseInt(idproduct[i]),
+            quanlity: quanlity[i].toString()
+        }
+    })
+   }}
+       
+     },
+     getOrder: async(userid) => {
+        const data = await client.orders.findMany({
+            where: {userrid: userid}
+
+        })
+        return data;
+     },
   
-    
+    createlikeProduct: async(userid,genId) => {
+        const data = await client.like_product.create({
+            data: {
+                userid:userid,
+                productid: genId
+            }
+        })
+       
+    }
 
 
  

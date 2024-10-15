@@ -7,6 +7,12 @@ module.exports = {
         const data = await client.role.findMany();
        return data;
     },
+    checkname: async(name) => {
+        const data = await client.role.findMany({
+            where: {name:name}
+        });
+       return data;
+    },
     postCreateRole : async(position) => {
     const create =await client.role.create({
         data: {

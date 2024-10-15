@@ -41,11 +41,12 @@ module.exports = {
     getSearch: async(req,res) => {
       const search = req.query.search;
       const id = parseInt(req.session.userId)
+      var cart=[]
+      let account = 0;
       if(id >= 0 ){
-          var cart = await productModel.getProduct(id);
-      } else {
-          var cart ={}
-      }
+          cart = await productModel.getProduct(id);
+          account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+      } 
       const users = await userModel.getUser();
       const product = await productModel.getProduct();
       const shop = await  shopModel.getShopInfo();
@@ -57,9 +58,9 @@ module.exports = {
           return name.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
       })
 
+     console.log(cart)
      
-     
-      res.render('./dashboard/viewproduct', {shop:shop, blog:blog,service:service, social:social, product:pro, cart:cart,users:users})
+      res.render('./dashboard/viewproduct', {shop:shop, blog:blog,service:service, social:social, product:pro, cart:cart,users:users,currentpage:id, account:account})
 
 
   },

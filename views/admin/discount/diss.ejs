@@ -9,7 +9,11 @@
             <div class="col-lg-9  ">
                 <div class="row text-center">
                     <h2> Discounts </h2> 
-                      
+                    <% if (errorMessage) { %> 
+                      <div class="alert alert-danger">
+                        <%= errorMessage %> 
+                      </div>
+                    <% } %>
                     <table class="table">
                       <thead>
                         <tr>

@@ -8,7 +8,9 @@ const reviewModel = require('../../controller/userController/product.js');
 router.get('/:ID',productController.getProduct);
 
 router.post('/review/:ID',login.requireLogin, review.requireReview, reviewModel.postRev)
-router.post('/cart/:ID', productController.createCart )
+router.post('/cart/:ID',login.requireLogin, productController.createCart )
 router.get('/delete/:ID', productController.remove)
+router.get('/like/:ID',login.requireLogin, productController.createlikeProduct)
+router.get('/like', productController.getlikeProduct)
 
 module.exports = router;

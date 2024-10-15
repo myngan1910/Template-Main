@@ -8,6 +8,12 @@ module.exports = {
         const data = await client.social.findMany();
         return data;
     },
+    checkname: async(name) => {
+        const data = await client.social.findMany({
+            where: {name:name}
+        });
+        return data;
+    },
     postCreSocial : async(name,link) => {
         const create = await client.social.create({
             data: {

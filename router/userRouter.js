@@ -11,8 +11,10 @@ const loginRouter = require('../router/userRouter/login.js')
 const registerRouter = require('../router/userRouter/register.js')
 const viewproductRouter = require('../router/userRouter/viewproduct.js')
 const profileRouter = require('../router/userRouter/profile.js')
+const orderRouter = require('../router/userRouter/order.js')
 const logoutRouter = require('../router/userRouter/logout.js')
 const requireLogin = require('../middleware/view/login.js')
+const likeRouter = require('../router/userRouter/likeproduct.js')
 
 router.use('/', shopRouter);
 
@@ -24,7 +26,9 @@ router.use('/product',productRouter);
 router.use('/login',loginRouter);
 router.use('/view',viewproductRouter);
 router.use('/profile', requireLogin.requireLogin, profileRouter )
+router.use('/order',requireLogin.requireLogin, orderRouter)
 router.use('/logout', logoutRouter)
+router.use('/like', likeRouter)
 
 //REGISTER
 router.use('/register',registerRouter);

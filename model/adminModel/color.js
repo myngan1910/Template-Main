@@ -41,4 +41,14 @@ module.exports = {
     })
     return update;
     
-    }, }
+    },
+    checkname: async(name) => {
+        const data = await client.color.findMany({
+            where: {
+              name: name,
+            },
+          });
+   return data;       
+    }
+
+}

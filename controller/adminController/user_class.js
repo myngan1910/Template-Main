@@ -5,7 +5,7 @@ module.exports = {
     
     getUser_class: async(req,res) =>{
         const dtPro = await userModel.getUser_class();
-        res.render('./admin/user-class/class',{data:dtPro} )
+        res.render('./admin/user-class/class',{data:dtPro,  errorMessage: ''} )
     },
     getCreateUser_class: async(req,res) => {
         res.render('./admin/user-class/classcre' )

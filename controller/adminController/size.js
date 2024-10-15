@@ -5,7 +5,7 @@ module.exports = {
      // SIZE
      getSize: async(req,res) =>{
         const dtPro = await sizeModel.getSize();
-        res.render('./admin/size/size',{data:dtPro} )
+        res.render('./admin/size/size',{data:dtPro,  errorMessage: ''} )
     },
     getCreateSize: async(req,res) => {
         res.render('./admin/size/sizecre' )

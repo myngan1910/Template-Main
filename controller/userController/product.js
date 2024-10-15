@@ -38,6 +38,12 @@ module.exports = {
         res.render('./dashboard/product', {product:product,shop:shop, service:service, social:social, color:color,size:size, cart:cart, account:account})
 
     },
+    createlikeProduct: async(req,res) => {
+        const userid = parseInt(req.session.userId)
+        const genId = parseInt(req.params.ID);
+        const creat = await productModel.createlikeProduct(userid,genId)
+        res.redirect(`/product/${genId}`)
+    },
     getviewProduct: async(req,res) => {
         const genId = parseInt(req.params.ID) || 1;
         
@@ -67,6 +73,34 @@ module.exports = {
         res.render('./dashboard/viewproduct', {product:pro,shop:shop, service:service, social:social, color:color,size:size,  cart:cart,currentpage:genId, account:account})
     
     },
+    getlikeProduct: async(req,res) => {
+        const genId = parseInt(req.params.ID);
+        
+        const userid = parseInt(req.session.userId)
+        let cart
+        let account = 0;
+        if( userid >= 0) {
+             cart = await productModel.getCart(userid);
+            
+        }
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+               
+
+            }
+        }
+        const shop = await shopModel.getShopInfo();
+        const service = await serviceModel.getService();
+        const social = await socialModel.getSocial();
+        const color = await colorModel.getColor();
+        const size = await sizeModel.getSize();
+        const product = await productModel.getlikeProduct(userid)
+       
+        res.render('./dashboard/productlike', {product:product,shop:shop, service:service, social:social, color:color,size:size,  cart:cart,currentpage:genId, account:account})
+    
+    },
+    
     createCart: async(req,res) => {
         const id = parseInt(req.params.ID);
         const userid = parseInt(req.session.userId);

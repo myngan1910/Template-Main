@@ -75,6 +75,7 @@ model users {
    
    order orders[]
    usercart user_product[]
+   user like_product[]
 
 }
 
@@ -155,6 +156,7 @@ model products {
     name String?
     price String?
     description String?
+    quanlity String?
     image image_product[]
     classify user_class @relation(fields: [classifid], references: [id])
     classifid Int
@@ -165,10 +167,9 @@ model products {
     size size_product[]
     onsale Int
     view Int
-    
-    
     review reviews[]
     procart  user_product[]
+    product like_product[]
    
 }
 
@@ -225,13 +226,13 @@ model color {
 }
 
 model order_product {
+ id Int  @id @default(autoincrement())
   order orders @relation(fields: [orderid], references: [id])
   orderid Int
   product products @relation (fields: [productid], references: [id])
   productid Int
   quanlity String?
 
-  @@id([orderid,productid])
 }
 
 model user_product {
@@ -243,7 +244,15 @@ model user_product {
    quanlity String?
  
 }
-
+model like_product {
+   id Int  @id @default(autoincrement())
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   product products @relation (fields: [productid], references: [id])
+   productid Int
+  
+ 
+}
 
 
 model mkt_endow {

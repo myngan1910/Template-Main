@@ -6,7 +6,7 @@ module.exports = {
     // SERVICE
     getService: async(req,res) =>{
         const dtShop = await  serviceModel.getService();
-        res.render('./admin/service/service', {data:dtShop})
+        res.render('./admin/service/service', {data:dtShop,  errorMessage: ''})
     },
     getCreateService: async(req,res) =>{
         res.render('./admin/service/servicecre')

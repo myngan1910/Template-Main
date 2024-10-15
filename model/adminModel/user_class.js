@@ -7,6 +7,12 @@ module.exports = {
         const data = await client.user_class.findMany();
        return data;
     },
+    checkname: async(name) => {
+        const data = await client.user_class.findMany({
+            where: {name:name}
+        });
+       return data;
+    },
     postCreateUser_class : async(name) => {
     const create =await client.user_class.create({
         data: {

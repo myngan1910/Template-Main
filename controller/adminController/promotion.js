@@ -6,7 +6,7 @@ module.exports = {
     // ENDOW
     getPro: async(req,res) =>{
         const dtShop = await  proModel.getPro();
-        res.render('./admin/promotion/promo', {data:dtShop})
+        res.render('./admin/promotion/promo', {data:dtShop,  errorMessage: ''})
     },
     getCreatePro: async(req,res) =>{
         res.render('./admin/promotion/promocre')

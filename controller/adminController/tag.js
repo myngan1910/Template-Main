@@ -5,7 +5,7 @@ module.exports = {
     //TAGS
     getTag: async(req,res) =>{
         const dtPro = await tagModel.getTag();
-        res.render('./admin/tags/tag',{data:dtPro} )
+        res.render('./admin/tags/tag',{data:dtPro,  errorMessage: ''} )
     },
     getCreateTag: async(req,res) => {
         res.render('./admin/tags/tagcre' )

@@ -6,6 +6,12 @@ module.exports = {
         const data = await client.discounts.findMany();
     return data;
     },
+    checkname: async(name) => {
+        const data = await client.discounts.findMany({
+            where: {name:name}
+        });
+    return data;
+    },
     postCreateDiscount : async(name) => {
     const create =await client.discounts.create({
         data: {

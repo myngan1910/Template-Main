@@ -153,4 +153,25 @@ module.exports = {
         return update;
         
         },  
+
+        getOrder: async(idorder,userid) =>{
+            const data = await client.orders.update({
+                where: { id:parseInt(idorder)},
+                data: {
+                    userrid: userid,
+                    active: 1
+                }
+            })
+            const product = await client.order_product.findMany({
+                where: {orderid:parseInt(idorder)}
+            })
+           for(var i = 0; i < product.length; i++){
+            const dele = await client.user_product.deleteMany({
+                where: {
+                    userid: userid,
+                    productid: parseInt(product[i].productid)
+                }
+            })
+           }
+        }
 }

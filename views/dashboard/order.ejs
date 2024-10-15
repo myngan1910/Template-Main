@@ -1,0 +1,100 @@
+<%- include('../layout/dashboard/headview'); -%>
+<body class="js">
+	
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+		
+		<!-- Header -->
+		<%- include('../layout/dashboard/headerr'); -%>
+		<!--/ End Header -->
+	
+	<!-- Breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<ul class="bread-list">
+							<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="/order">Order</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Breadcrumbs -->
+			
+	<!-- Shopping Cart -->
+	<div class="shopping-cart section">
+		<div class="container">
+			
+            <div class="row">
+				<div class="col-12">
+					<!-- Shopping Summery -->
+					<table class="table shopping-summery">
+                        <p>Đơn hàng của bạn </p>
+						<thead>
+							<tr class="main-hading">
+								
+								<th>PRODUCT</th>
+								<th>NAME</th>
+								<th class="text-center">QUANTITY</th>
+								<th class="text-center">Price</th> 
+                                <th class="text-center">Order Status</th> 
+							</tr>
+						</thead>
+						<tbody>
+							
+							<% for(var i=0; i < order.length; i++){%>
+								
+							<tr>
+								<td class="image" data-title="No"><img src="<%= order[i].products[0].product.image[i].image%>" alt="#"></td>
+								<td class="product-des" data-title="Description">
+									<p class="product-name"><a href=""><%= order[i].products[0].product.name%></a></p>
+								</td>
+								
+								<td class="qty" data-title="Qty"><!-- Input Order -->
+                                    <p class="product-name"><a href=""><%= order[i].products[0].quanlity%></a></p>
+
+									<!--/ End Input Order -->
+								</td>
+                                <td class="total-amount" data-title="Total"><span><%= order[i].products[0].product.price%></span></td>
+
+                                <td class="total-amount" data-title="Total"><span>Đã đặt</span></td>
+							</tr>
+							<%}%>
+						
+			
+						</tbody>
+					</table>
+					<!--/ End Shopping Summery -->
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
+			
+	
+	<!-- End Shop Newsletter -->
+	
+	
+	
+	
+	
+	<!-- Start Footer Area -->
+	<!-- /End Footer Area -->
+	
+	<!-- Jquery -->
+    <%- include('../layout/dashboard/script'); -%>
+</body>
+</html>

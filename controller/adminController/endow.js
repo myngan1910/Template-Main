@@ -6,7 +6,7 @@ module.exports = {
     // ENDOW
     getEndow: async(req,res) =>{
         const dtShop = await  endowModel.getEndow();
-        res.render('./admin/endow/endow', {data:dtShop})
+        res.render('./admin/endow/endow', {data:dtShop,  errorMessage: ''})
     },
     getCreateEndow: async(req,res) =>{
         res.render('./admin/endow/endowcre')

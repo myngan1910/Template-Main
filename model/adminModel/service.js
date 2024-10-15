@@ -7,7 +7,13 @@ module.exports = {
         const data = await client.service.findMany(); 
        return data;
     },
-
+    
+    checkname: async(name) => {
+        const data = await client.service.findMany({
+            where: {name:name}
+        }); 
+       return data;
+    },
     postCreateService : async(name,icon,des) => {
         console.log(1)
     const create = await client.service.create({

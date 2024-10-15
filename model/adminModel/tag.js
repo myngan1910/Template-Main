@@ -3,8 +3,14 @@ const {PrismaClient, Prisma} = require('@prisma/client');
 const client = new PrismaClient();
 module.exports = {
 
-       getTag: async() => {
+    getTag: async() => {
         const data = await client.tags.findMany();
+       return data;
+    },
+    checkname: async(name) => {
+        const data = await client.tags.findMany({
+            where: {name:name}
+        });
        return data;
     },
     postCreateTag : async(name) => {

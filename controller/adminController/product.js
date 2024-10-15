@@ -8,7 +8,7 @@ const colorModel = require('../../model/adminModel/color.js')
 module.exports = {
     getProduct: async(req,res) =>{
         const dtPro = await productModel.getProduct();
-        res.render('./admin/products/product',{data:dtPro} )
+        res.render('./admin/products/product',{data:dtPro, ererrorMessage: ''} )
     },
     getCreateProduct: async(req,res) => {
         const data1 = await user_classModel.getUser_class();
@@ -21,13 +21,14 @@ module.exports = {
         const name = req.body.name;
         const price = req.body.price;
         const des = req.body.description;
+        const quant = req.body.quanlity;
         const clas = parseInt(req.body.classifid);
         const dis  = parseInt(req.body.discountid);
         const ons  = parseInt(req.body.onsale);
         const view  = parseInt(req.body.view);
         const size = req.body.size;
         const color = req.body.color;
-        const createPro =  await productModel.postCreateProduct(name,price,des,clas,dis,ons,view, size, color);
+        const createPro =  await productModel.postCreateProduct(name,price,des,quant,clas,dis,ons,view, size, color);
         return res.redirect(`/admin/product`)
       
     
@@ -55,6 +56,7 @@ module.exports = {
         const name = req.body.name;
         const price = req.body.price;
         const des = req.body.description;
+        const quant = req.body.quanlity;
         const clas = parseInt(req.body.classifid);
         const dis  = parseInt(req.body.discountid);
         const ons  = parseInt(req.body.onsale);
@@ -62,7 +64,7 @@ module.exports = {
         const size = req.body.size;
         const color = req.body.color;
         
-        const viewPro =  await productModel.postProduct(genId,name,price,des,clas,dis,ons,view, size, color)
+        const viewPro =  await productModel.postProduct(genId,name,price,des,quant,clas,dis,ons,view, size, color)
         return res.redirect(`/admin/product`)
     },
 }

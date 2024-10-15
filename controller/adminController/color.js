@@ -5,7 +5,7 @@ module.exports = {
     
     getColor: async(req,res) =>{
         const dtPro = await colorModel.getColor();
-        res.render('./admin/color/color',{data:dtPro} )
+        res.render('./admin/color/color',{data:dtPro,  errorMessage: ''} )
     },
     getCreateColor: async(req,res) => {
         res.render('./admin/color/colorcre' )
