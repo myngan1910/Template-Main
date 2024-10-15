@@ -138,7 +138,7 @@
 								<h3 class="title">Blog Categories</h3>
 								<% for (var i=0; i < cate.length; i++) {%>
 								<ul class="categor-list">
-									<li><a href=""><%= cate[i].name%></a></li>
+									<li><a href="/blog/<%= cate[i].id %>"><%= cate[i].name%></a></li>
 									
 								</ul>
 								 <%}%>
@@ -154,7 +154,7 @@
 										<img src="../<%= blogg[i].image %>" alt="#" >
 									</div>
 									<div class="content">
-										<h5><a href="#"><%= blogg[i].description1%></a></h5>
+										<h5><a href="/blog/<%= blogg[i].id %>"><%= blogg[i].description1%></a></h5>
 										<ul class="comment">
 											<li><i class="fa fa-calendar" aria-hidden="true"></i><%= blogg[i].time%></li>
 											<!-- <li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li> -->
@@ -179,7 +179,7 @@
 								
 								<ul class="tag">
 									<% for(var i=0; i < tag.length; i++) {%>
-									<li><a href="#"><%= tag[i].name%></a></li>
+									<li><a href="/blog/<%= tag[i].id %>"><%= tag[i].name%></a></li>
 									<%}%>
 								</ul>
 								
