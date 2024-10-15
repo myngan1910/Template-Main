@@ -317,6 +317,22 @@ module.exports = {
     },  
 
     createCart: async(id, userid, quatity) => {
+        const data = await client.user_product.findMany({
+            where: {
+                productid:id,
+                userid:userid,
+            }
+        })
+
+        if(data.length > 0) {
+            const update = await client.user_product.updateMany({
+                where: {productid:id, userid:userid},
+                data: {
+                    quanlity: String(parseInt(data[0].quanlity) + parseInt(quatity))
+                }
+            })
+       
+        }else{
         const create = await client.user_product.create({
          data: {
             productid: id,
@@ -325,6 +341,7 @@ module.exports = {
 
          }
         })
+    }
         
 
     },
@@ -509,14 +526,26 @@ module.exports = {
      },
   
     createlikeProduct: async(userid,genId) => {
-        const data = await client.like_product.create({
+        const data = await client.like_product.findMany({
+            where: {userid:userid, productid:genId}
+        })
+        if(data.length > 0){
+            const del= await client.like_product.deleteMany({
+                where: {userid:userid, productid:genId}
+            })
+        }else{
+
+        const crea = await client.like_product.create({
             data: {
                 userid:userid,
                 productid: genId
             }
         })
-       
     }
+       
+    },
+
+
 
 
  

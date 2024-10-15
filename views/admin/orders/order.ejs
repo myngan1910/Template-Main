@@ -29,14 +29,15 @@
                       </thead>
                       <tbody>
                         <% for (var i =0 ; i < data.length; i++) {%>
+                          <% for (var j =0 ; j < data[i].products.length; j++) {%>
                         <tr>
                           <td><%= data[i].id %></td>
                           <td><%= data[i].userrid %></td>
-                          <td><img src="../<%= data[i].products[0].product.image[i].image%>" class=" img-fluid" width="20px" height="5px"></td>
+                          <td><img src="../<%= data[i].products[j].product.image[i].image%>" class=" img-fluid" width="20px" height="5px"></td>
 
-                          <td><%= data[i].products[0].quanlity %></td>
-                          <td><%= data[i].products[0].product.name%></td>
-                          <td><%= data[i].products[0].product.price %></td>
+                          <td><%= data[i].products[j].quanlity %></td>
+                          <td><%= data[i].products[j].product.name%></td>
+                          <td><%= data[i].products[j].product.price %></td>
                           <td><%= data[i].active %></td>
                           
                           
@@ -44,6 +45,7 @@
                             /<a href="/admin/orderdele/<%= data[i].id %>">Delete</a></td>
                   
                         </tr>
+                        <% }%>
                         <% }%>
                         
                       </tbody>

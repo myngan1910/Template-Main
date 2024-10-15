@@ -7,7 +7,6 @@ const socialModel = require('../../model/adminModel/social.js')
 const colorModel = require('../../model/adminModel/color.js')
 const sizeModel = require('../../model/adminModel/size.js')
 const reviewModel = require('../../model/adminModel/review.js')
-const product = require('../../model/adminModel/product.js')
 
 module.exports = {
     getProduct: async(req,res) => {
@@ -41,7 +40,13 @@ module.exports = {
     createlikeProduct: async(req,res) => {
         const userid = parseInt(req.session.userId)
         const genId = parseInt(req.params.ID);
-        const creat = await productModel.createlikeProduct(userid,genId)
+        let likeproduct 
+        if(userid > 0) {
+             likeproduct = await productModel.createlikeProduct(userid,genId)
+           
+        }
+      
+
         res.redirect(`/product/${genId}`)
     },
     getviewProduct: async(req,res) => {
@@ -75,7 +80,6 @@ module.exports = {
     },
     getlikeProduct: async(req,res) => {
         const genId = parseInt(req.params.ID);
-        
         const userid = parseInt(req.session.userId)
         let cart
         let account = 0;
@@ -106,9 +110,10 @@ module.exports = {
         const userid = parseInt(req.session.userId);
         const quatity = req.body.quantity;
        
-
-        const create = await productModel.createCart(id,userid,quatity);
-        
+        let create 
+        if( userid > 0) {
+         create = await productModel.createCart(id,userid,quatity);
+        }
         res.redirect(`/product/${id}`)
 
     },

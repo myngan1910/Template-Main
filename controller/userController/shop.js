@@ -40,6 +40,7 @@ module.exports = {
     },
     getSearch: async(req,res) => {
       const search = req.query.search;
+      const genId = parseInt(req.params.ID)
       const id = parseInt(req.session.userId)
       var cart=[]
       let account = 0;
@@ -60,7 +61,7 @@ module.exports = {
 
      console.log(cart)
      
-      res.render('./dashboard/viewproduct', {shop:shop, blog:blog,service:service, social:social, product:pro, cart:cart,users:users,currentpage:id, account:account})
+      res.render('./dashboard/viewproduct', {shop:shop, blog:blog,service:service, social:social, product:pro, cart:cart,users:users,currentpage:genId, account:account})
 
 
   },

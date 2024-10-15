@@ -62,7 +62,7 @@ module.exports = {
         const service = await serviceModel.getService()
         const social = await socialModel.getSocial()
         const blog =  await blogModel.getpageBlog((id - 1)*2);
-        var ad
+       
         res.render('./dashboard/viewBlog', {blog:blog,cate:cate,tag:tag,shop:shop, service:service, social:social, cart:cart,currentpage:id, account:account })
 
     },

@@ -93,10 +93,11 @@ module.exports = {
     return update;
     
     },
-    getpageOrder: async () => {
+    getpageOrder: async (userid) => {
         const data = await client.orders.findMany({
           where: {
-            active: 1,
+          userrid:userid,
+          active: 1,
           },
           select: {
             id: true,
@@ -136,7 +137,7 @@ module.exports = {
             },
           },
         });
-      
         return data;
       }
+      
 }
