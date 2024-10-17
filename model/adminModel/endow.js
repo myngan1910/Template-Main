@@ -18,7 +18,6 @@ module.exports = {
     },
 
     postCreateEndow : async(name,img,dis,des) => {
-        console.log(1)
     const create = await client.mkt_endow.create({
         data: {
             name: name,

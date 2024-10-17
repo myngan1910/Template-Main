@@ -30,23 +30,69 @@
 <script src="/js/easing.js"></script>
 <!-- Active JS -->
 <script src="/js/active.js"></script>
+<script src="/js/js.js"></script>
 
+
+
+
+
+<!-- ADD TO CART -->
 <script>
-    
-    function toggleSearch() {
-        var searchInput = document.getElementById("search-input");
-        var searchIcon = document.getElementById("search-icon");
+	
+	function changes(button) {
+    const productId = button.id;
+    const row = document.getElementById(productId);
+    const input = row.querySelector('.input-number'); // Lấy ô input tương ứng
+    const p = button.getAttribute('data-type');
+    var quanlity = 0;
 
-      
-        if (searchInput.style.display === "none" || searchInput.style.display === "") {
-            searchInput.style.display = "block";
-            searchInput.style.width = "200px";
-            searchIcon.style.opacity = "0"; 
+    if (p == 'plus') {
+        quanlity = (parseInt(input.value)  + 1) || 0;
+        row.querySelector('.input-number').value = quanlity;
+    } else {
+        if (parseInt(input.value) > 1) {
+            quanlity = parseInt(input.value) -1 || 0 ; // Kiểm tra nếu nhập không phải số thì mặc định là 0
         } else {
-            searchInput.style.display = "none";
-            searchInput.style.width = "0"; 
-            searchIcon.style.opacity = "1"; 
+            quanlity = 1;
         }
+        row.querySelector('.input-number').value = quanlity;
     }
+
+    const quanlityLast = parseInt(row.querySelector('.input-number').value); // Lấy ô input tương ứng
+    const price = parseFloat(row.querySelector('.price span').textContent);
+    const totalAmount = (quanlityLast) * price;
+    row.querySelector('.total-amount span').textContent = totalAmount;
+    updateCheckedRows();
+}
+
+function updateCheckedRows() {
+    // Lấy tất cả các thẻ <tr>
+    const rows = document.querySelectorAll('tr');
+	const checkedRows = [];
+    var total = 0;
+
+    rows.forEach(row => {
+        // Tìm checkbox trong <tr>
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+            const productId = row.id;
+			
+            const price = parseFloat(row.querySelector('.price span').textContent);
+            const quanlityInput = row.querySelector('.input-number');
+            const quanlity = parseInt(quanlityInput.value) || 1;
+            total = total + price * (quanlity);
+        }
+    });
+
+    document.querySelector('#cartSubtotala').textContent = '$' + total.toFixed(2);
+    document.querySelector('#totalPaya').textContent = '$' + total.toFixed(2);
+
+    if (checkedRows.length === 0) {
+        console.log('No products selected.');
+    }
+}
+
 </script>
+
+
 

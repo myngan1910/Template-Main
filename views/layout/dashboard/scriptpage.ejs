@@ -30,25 +30,8 @@
 <script src="/js/easing.js"></script>
 <!-- Active JS -->
 <script src="/js/active.js"></script>
+<script src="/js/js.js"></script>
 
-<script>
-    
-    function toggleSearch() {
-        var searchInput = document.getElementById("search-input");
-        var searchIcon = document.getElementById("search-icon");
-
-      
-        if (searchInput.style.display === "none" || searchInput.style.display === "") {
-            searchInput.style.display = "block";
-            searchInput.style.width = "200px";
-            searchIcon.style.opacity = "0"; 
-        } else {
-            searchInput.style.display = "none";
-            searchInput.style.width = "0"; 
-            searchIcon.style.opacity = "1"; 
-        }
-    }
-</script>
 
 <script>
     
@@ -57,12 +40,12 @@
     var totalPages = 2; 
     prevBtn.onclick = function() {
         if (currentpage > 1) {
-            window.location.href = `/blog/page/${currentpage - 1}`;
+            window.location.href = `/${currentpage - 1}`;
         }
     };
     nextBtn.onclick = function() {
         if (currentpage < totalPages) {
-            window.location.href = `/blog/page/${currentpage + 1}`;
+            window.location.href = `/${currentpage + 1}`;
         }
     };
     if (currentblog <= 1) {

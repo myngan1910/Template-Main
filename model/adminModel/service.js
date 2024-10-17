@@ -15,7 +15,6 @@ module.exports = {
        return data;
     },
     postCreateService : async(name,icon,des) => {
-        console.log(1)
     const create = await client.service.create({
         data: {
             name: name,

@@ -42,12 +42,18 @@ module.exports = {
       const search = req.query.search;
       const genId = parseInt(req.params.ID)
       const id = parseInt(req.session.userId)
-      var cart=[]
-      let account = 0;
-      if(id >= 0 ){
-          cart = await productModel.getProduct(id);
-          account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
-      } 
+      let cart
+        let account = 0;
+        if( id >= 0) {
+             cart = await productModel.getCart(id);
+            
+        }
+        if(cart != undefined){
+            for (var i=0; i < cart.length; i++ ){
+                account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+
+            }
+        } 
       const users = await userModel.getUser();
       const product = await productModel.getProduct();
       const shop = await  shopModel.getShopInfo();

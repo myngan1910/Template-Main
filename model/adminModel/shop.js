@@ -8,7 +8,6 @@ module.exports = {
     },
 
     postCreateShop : async(name,logo,mail,phone,add,des) => {
-        console.log(1)
     const create = await client.shop_info.create({
         data: {
             name: name,

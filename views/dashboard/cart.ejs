@@ -160,63 +160,6 @@
 	
 	<!-- Jquery -->
     <%- include('../layout/dashboard/script'); -%>
-	<script>
 	
-	function changes(button) {
-    const productId = button.id;
-    const row = document.getElementById(productId);
-    const input = row.querySelector('.input-number'); // Lấy ô input tương ứng
-    const p = button.getAttribute('data-type');
-    var quanlity = 0;
-
-    if (p == 'plus') {
-        quanlity = (parseInt(input.value)  + 1) || 0;
-        row.querySelector('.input-number').value = quanlity;
-    } else {
-        if (parseInt(input.value) > 1) {
-            quanlity = parseInt(input.value) -1 || 0 ; // Kiểm tra nếu nhập không phải số thì mặc định là 0
-        } else {
-            quanlity = 1;
-        }
-        row.querySelector('.input-number').value = quanlity;
-    }
-
-    const quanlityLast = parseInt(row.querySelector('.input-number').value); // Lấy ô input tương ứng
-    const price = parseFloat(row.querySelector('.price span').textContent);
-    const totalAmount = (quanlityLast) * price;
-    row.querySelector('.total-amount span').textContent = totalAmount;
-    updateCheckedRows();
-}
-
-function updateCheckedRows() {
-    // Lấy tất cả các thẻ <tr>
-    const rows = document.querySelectorAll('tr');
-	const checkedRows = [];
-    var total = 0;
-
-    rows.forEach(row => {
-        // Tìm checkbox trong <tr>
-        const checkbox = row.querySelector('input[type="checkbox"]');
-        if (checkbox && checkbox.checked) {
-            const productId = row.id;
-			console.log(productId)
-			
-            const price = parseFloat(row.querySelector('.price span').textContent);
-            const quanlityInput = row.querySelector('.input-number');
-            const quanlity = parseInt(quanlityInput.value) || 1;
-            total = total + price * (quanlity);
-			console.log(total)
-        }
-    });
-
-    document.querySelector('#cartSubtotala').textContent = '$' + total.toFixed(2);
-    document.querySelector('#totalPaya').textContent = '$' + total.toFixed(2);
-
-    if (checkedRows.length === 0) {
-        console.log('No products selected.');
-    }
-}
-
-		</script>
 </body>
 </html>

@@ -42,7 +42,6 @@ module.exports = {
     getViewBlog: async(req,res)=>{
         const userid = parseInt(req.session.userId)
          const id = parseInt(req.params.ID)||1;
-         console.log(userid)
          let cart
         let account = 0;
         if( userid >= 0) {
