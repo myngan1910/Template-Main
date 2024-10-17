@@ -46,7 +46,7 @@
 								<th></th>
 								<th>PRODUCT</th>
 								<th>NAME</th>
-								
+								<th>PRICE</th>
 								<th class="text-center">QUANTITY</th>
 								<th class="text-center">TOTAL</th> 
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
@@ -56,31 +56,34 @@
 							<% if(cart != undefined){%> 
 							<% for(var i=0; i < cart.length; i++){%>
 								
-							<tr>
-								<td> <input name="product" id="<%= cart[i].product.id%>" type="checkbox" value="<%= cart[i].product.id%>"></option></td>
+							<tr id="<%= cart[i].product.id%>">
+								<td> <input name="product" id="<%= cart[i].product.id%>" type="checkbox" value="<%= cart[i].product.id%>"  onchange="updateCheckedRows()"></td>
 								<td class="image" data-title="No"><img src="<%= cart[i].product.image[0].image%>" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href=""><%= cart[i].product.name%></a></p>
 									<p class="product-des"><%= cart[i].product.description%></p>
 								</td>
-								
+								<td class="price" data-title="Price" >$<span><%= cart[i].product.price %></span></td>
+
 								<td class="qty" data-title="Qty"><!-- Input Order -->
 									<div class="input-group">
 										<div class="button minus">
-										  <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="quant[1]">
-											<i class="ti-minus"></i>
-										  </button>
+											<button type="button" class="btn btn-primary btn-number" data-type="minus" id="<%= cart[i].product.id %>" data-field="quant[<%= cart[i].product.id %>]" onclick="changes(this)">
+												<i class="ti-minus"></i>
+											</button>
 										</div>
-										<input type="text" name="quant<%= cart[i].product.id%>" class="input-number" data-min="1" data-max="1000" value="<%= cart[i].quanlity%>">
+										<input type="text" name="quant<%= cart[i].product.id %>" class="input-number" data-min="1" data-max="100" value="<%= cart[i].quanlity %>"  >
 										<div class="button plus">
-										  <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-											<i class="ti-plus"></i>
-										  </button>
+											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[<%= cart[i].product.id %>]" id="<%= cart[i].product.id %>" onclick="changes(this)">
+												<i class="ti-plus"></i>
+											</button>
 										</div>
-									  </div>
-									<!--/ End Input Order -->
+									</div>
+								<!--/ End Input Order -->
 								</td>
-								<td class="total-amount" data-title="Total"><span><%= cart[i].product.price%></span></td>
+								<td class="total-amount" data-title="Total">
+									$<span><%= parseInt(cart[i].product.price) * parseInt(cart[i].quanlity) %></span>
+								</td>
 								<td class="remove" data-title="Remove"><a href="/product/delete/<%= cart[i].product.id%>"><i class="ti-trash remove-icon"></i></a></td>
 
 							</tr>
@@ -106,22 +109,22 @@
 										</form>
 									</div>
 									<div class="checkbox">
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
+										<label class="checkbox-inline" for="2"><input name="product"  type="checkbox"  onchange="updateTotal()"> Shipping (+10$)</label>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-
-										<li>Cart Subtotal<span> $
-												<%= account%>.00
-											
+										<% if(cart != undefined && cart.length > 0){%>
+										<li>Cart Subtotal<span id="cartSubtotala">$0.00</span></li>
+							
 										</span></li>
 										<li>Shipping<span>Free</span></li>
 										<!-- <li>You Save<span>$20.00</span></li> -->
-										<li class="last">You Pay<span>$<%= account%>.00</span></li>
+										<li class="last">You Pay<span id="totalPaya">$0.00</span></li>
 									</ul>
+									<%}%>
 									<div class="button5">
 										<button type="submit" class="btn">Checkout</button>
 										<a href="/" class="btn">Continue shopping</a>
@@ -131,11 +134,16 @@
 						</div>
 					</div>
 				</form>
-					<!--/ End Total Amount -->
-				</div>
 			</div>
 		</div>
 	</div>
+</div>
+					<!--/ End Total Amount -->
+					
+	<!--/ End Shopping Summery -->
+
+
+
 	<!--/ End Shopping Cart -->
 			
 	<!-- Start Shop Services Area  -->
@@ -152,5 +160,63 @@
 	
 	<!-- Jquery -->
     <%- include('../layout/dashboard/script'); -%>
+	<script>
+	
+	function changes(button) {
+    const productId = button.id;
+    const row = document.getElementById(productId);
+    const input = row.querySelector('.input-number'); // Lấy ô input tương ứng
+    const p = button.getAttribute('data-type');
+    var quanlity = 0;
+
+    if (p == 'plus') {
+        quanlity = (parseInt(input.value)  + 1) || 0;
+        row.querySelector('.input-number').value = quanlity;
+    } else {
+        if (parseInt(input.value) > 1) {
+            quanlity = parseInt(input.value) -1 || 0 ; // Kiểm tra nếu nhập không phải số thì mặc định là 0
+        } else {
+            quanlity = 1;
+        }
+        row.querySelector('.input-number').value = quanlity;
+    }
+
+    const quanlityLast = parseInt(row.querySelector('.input-number').value); // Lấy ô input tương ứng
+    const price = parseFloat(row.querySelector('.price span').textContent);
+    const totalAmount = (quanlityLast) * price;
+    row.querySelector('.total-amount span').textContent = totalAmount;
+    updateCheckedRows();
+}
+
+function updateCheckedRows() {
+    // Lấy tất cả các thẻ <tr>
+    const rows = document.querySelectorAll('tr');
+	const checkedRows = [];
+    var total = 0;
+
+    rows.forEach(row => {
+        // Tìm checkbox trong <tr>
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+            const productId = row.id;
+			console.log(productId)
+			
+            const price = parseFloat(row.querySelector('.price span').textContent);
+            const quanlityInput = row.querySelector('.input-number');
+            const quanlity = parseInt(quanlityInput.value) || 1;
+            total = total + price * (quanlity);
+			console.log(total)
+        }
+    });
+
+    document.querySelector('#cartSubtotala').textContent = '$' + total.toFixed(2);
+    document.querySelector('#totalPaya').textContent = '$' + total.toFixed(2);
+
+    if (checkedRows.length === 0) {
+        console.log('No products selected.');
+    }
+}
+
+		</script>
 </body>
 </html>

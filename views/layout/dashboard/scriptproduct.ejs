@@ -51,34 +51,7 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Các nút tăng/giảm
-      var minusButtons = document.querySelectorAll('.btn-number[data-type="minus"]');
-      var plusButtons = document.querySelectorAll('.btn-number[data-type="plus"]');
-  
-      // Thêm sự kiện click cho nút giảm
-      minusButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-          var input = this.closest('.input-group').querySelector('.input-number');
-          var currentValue = parseInt(input.value);
-          if (!isNaN(currentValue) && currentValue > parseInt(input.getAttribute('data-min'))) {
-            input.value = currentValue - 1;
-          }
-        });
-      });
-  
-      // Thêm sự kiện click cho nút tăng
-      plusButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-          var input = this.closest('.input-group').querySelector('.input-number');
-          var currentValue = parseInt(input.value);
-          if (!isNaN(currentValue) && currentValue < parseInt(input.getAttribute('data-max'))) {
-            input.value = currentValue + 1;
-          }
-        });
-      });
-    });
-
+    
  
     var currentpage = parseInt("<%= currentpage %>") || 1;
     var totalPages = 2; 

@@ -25,11 +25,10 @@ module.exports = {
            const create = await productModel.postCheck(idproduct,quanlity, userid)
                 idoder = await productModel.getOrder(userid)
       }
-      if(cart != undefined){
-          for (var i=0; i < cart.length; i++ ){
-              account=account + parseInt(cart[i].product.price)* parseInt(cart[i].quanlity);
+      const data=await productModel.getOdered(userid)
+          for (var i=0; i < data.length; i++ ){
+              account=account + parseInt(data[i].product.price)* parseInt(data[i].quanlity);
 
-          }
       }
 
       const shop = await shopModel.getShopInfo();   
