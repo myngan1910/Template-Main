@@ -548,12 +548,12 @@ module.exports = {
         const data= await  client.order_product.findMany({
             where: {
               order: {
-                userrid: iduser,  // Điều kiện theo userid
-                active:0,        // Trạng thái đơn hàng đã được gửi 
+                userrid: iduser, 
+                active:0,        
               }
             },
             include: {
-                product: true  // Lấy thông tin của bảng 'product'
+                product: true  
             }
           })
 

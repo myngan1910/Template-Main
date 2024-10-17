@@ -28,9 +28,9 @@ const userRouter = require('./router/userRouter.js')
 const adminRouter = require('./router/adminRouter.js')
 const checklogin= require('./middleware/view/login.js')
 const checkAdmin = require('./middleware/admin/loginAdmin.js')
-app.use('/admin', checklogin.requireLogin, checkAdmin.loginAdmin, adminRouter)
+app.use('/admin', checklogin.requireLogin, checkAdmin.loginAdmin,  adminRouter)
 app.use('/', userRouter);
-// login.requireLogin, login.loginAdmin,
+// checklogin.requireLogin, checkAdmin.loginAdmin,      
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
