@@ -81,8 +81,14 @@ function updateCheckedRows() {
             const quanlityInput = row.querySelector('.input-number');
             const quanlity = parseInt(quanlityInput.value) || 1;
             total = total + price * (quanlity);
+            checkedRows.push(productId); 
         }
+      
+    
+        
     });
+   
+
 
     document.querySelector('#cartSubtotala').textContent = '$' + total.toFixed(2);
     document.querySelector('#totalPaya').textContent = '$' + total.toFixed(2);
@@ -93,6 +99,8 @@ function updateCheckedRows() {
 }
 
 </script>
+
+
 
 
 

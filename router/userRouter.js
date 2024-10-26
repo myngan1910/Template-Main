@@ -18,7 +18,7 @@ const likeRouter = require('../router/userRouter/likeproduct.js')
 
 router.use('/', shopRouter);
 
-router.use('/cart', cartRouter);
+router.use('/cart',requireLogin.requireLogin, cartRouter);
 router.use('/blog',blogRouter);
 router.use('/contact',contactRouter);
 router.use('/checkout', requireLogin.requireLogin,checkoutRouter);

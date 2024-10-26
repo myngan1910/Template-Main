@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>Create Coupon</h3> 
+                 
+                </div>
+                
+                <form action="/admin/createcou" method="post">
+                  <div class="form-group">
+                     
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" value="" name="name">
+                    <!-- <label for="discount">Discount:</label>
+                    <input type="text" class="form-control" id="discount" value="" name="discount"> -->
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" class="form-control" id="quantity" value="" name="quantity">
+                    <div class="form-group">
+                      <label>Classify:</label>
+                      <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                      <div id="dropdown-content-user" class="dropdown-content" style="display:none;">
+                          <label><input type="checkbox" name="classify" value="all">Tất cả khách
+                              hàng</label>
+                          <% for(var i=0; i < classify.length; i++) { %>
+                              <label>
+                                
+                                  <input type="checkbox" name="classify" value="<%=classify[i].id %>">
+                                  <%=classify[i].name %>
+                              </label>
+                          <% } %>
+                      </div>
+                  </div>
+                   
+                    <label for="pricemin">Pricemin:</label>
+                    <input type="text" class="form-control" id="pricemin" value="" name="pricemin">
+                    <label for="buymin">Buymin:</label>
+                    <input type="text" class="form-control" id="buymin" value="" name="buymin">
+                    <label for="acountmin">Accountmin:</label>
+                    <input type="text" class="form-control" id="acountmin" value="" name="acountmin">
+                    <label for="acountbuymin">Accountbuymin:</label>
+                    <input type="text" class="form-control" id="acountbuymin" value="" name="acountbuymin">
+                    
+
+                      
+                      
+                      
+                      
+                    </div>
+                  <button type="submit" class="btn btn-dark">Create</button>
+                </form>
+                 
+            </div>
+        </div>
+    </div>
+    
+  </body>
+  <%- include('../../layout/admin/js'); -%>
+</html>

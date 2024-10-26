@@ -4,6 +4,8 @@ const shopModel = require('../../model/adminModel/shop.js')
 const socialModel = require('../../model/adminModel/social.js')
 const serviceModel = require('../../model/adminModel/service.js')
 const productModel = require('../../model/adminModel/product.js');
+const couponModel = require('../../model/adminModel/coupon.js')
+
 module.exports = {
     getCartInfor: async(req,res) => {
         const userid = parseInt(req.session.userId)
@@ -24,7 +26,10 @@ module.exports = {
        const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
-        res.render('./dashboard/cart',{shop:shop, social:social, service:service,cart:cart, account:account})
+        const datacoupon = await couponModel.userCoupon(userid)
+       console.log(datacoupon)
+       
+        res.render('./dashboard/cart',{shop:shop, social:social, service:service,cart:cart, account:account, coupon:datacoupon})
 
     },
     

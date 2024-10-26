@@ -76,7 +76,7 @@ model users {
    order orders[]
    usercart user_product[]
    user like_product[]
-
+   coupon user_coupon[]
 }
 
 model comments {
@@ -105,6 +105,7 @@ model orders {
    userrid Int
    active Int
    products order_product[]
+   coupon coupon_oder[]
 }
 
 model blogs {
@@ -170,6 +171,7 @@ model products {
     review reviews[]
     procart  user_product[]
     product like_product[]
+    coupon coupon_product[]
    
 }
 
@@ -184,6 +186,7 @@ model user_class {
     id Int  @id @default(autoincrement())
     name String?
     product products[]
+    coupon class_coupon[]
 
 }
 
@@ -272,4 +275,61 @@ model promotion {
    discount String?
   
    
+}
+
+
+
+model coupon {
+    id Int  @id @default(autoincrement())
+    name String?
+    discount String?
+    quantity String?
+    coupon String?
+    action Int
+    pricemin String?
+    buymin String?
+    acountmin String?
+    acountbuymin String?
+
+    
+    user user_coupon[]
+    userclass class_coupon[]
+     product coupon_product[]
+     oder coupon_oder[]
+
+}
+model coupon_oder{
+    id Int  @id @default(autoincrement())
+    oder orders @relation(fields: [oderid], references: [id])
+    oderid Int
+    coupon coupon @relation(fields: [couponid], references: [id])
+    couponid Int
+}
+model coupon_product{
+    id Int  @id @default(autoincrement())
+    product products @relation(fields: [productid], references: [id])
+    productid Int
+    coupon coupon @relation(fields: [couponid], references: [id])
+    couponid Int
+}
+
+model class_coupon {
+   id Int  @id @default(autoincrement())
+   class user_class @relation(fields: [classid], references: [id])
+   classid Int
+   coupon coupon @relation (fields: [couponid], references: [id])
+   couponid Int
+   
+ 
+}
+
+model user_coupon {
+   id Int  @id @default(autoincrement())
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   coupon coupon @relation (fields: [couponid], references: [id])
+   couponid Int
+   quantity Int
+   
+ 
 }

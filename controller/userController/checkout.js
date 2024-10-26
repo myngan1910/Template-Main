@@ -5,16 +5,22 @@ const socialModel = require('../../model/adminModel/social.js')
 const serviceModel = require('../../model/adminModel/service.js')
 const productModel = require('../../model/adminModel/product.js')
 const userModel = require('../../model/adminModel/user.js')
+const checkoutModel = require('../../model/adminModel/checkout.js')
+const couponModel = require('../../model/adminModel/coupon.js')
+
 module.exports = {
     getCheck: async(req,res) => {
       const userid = parseInt(req.session.userId)
-    
+      const idcoupon = parseInt(req.body.coupon) 
       const idproduct = req.body.product;
+ 
+      const id = await productModel.getOrder(userid)
       const quant = req.body.quant;
       const quanlity =  []
       let cart
       let account = 0;
       let idoder
+
       if( userid >= 0) {
            cart = await productModel.getCart(userid);
            if(idproduct.length !=0 ){
@@ -30,14 +36,28 @@ module.exports = {
               account=account + parseInt(data[i].product.price)* parseInt(data[i].quanlity);
 
       }
+      const coupon = await checkoutModel.checkbuymin(userid,account)
+      for (var i = 0; i < coupon.length; i++) {
+        var check = 0
+        for (var j = 0; j < coupon[i].class; j++) {
+            for (var z = 0; z < data.length; z++) {
+                if (coupon[i].class[j].classid == data[z].product.classifid) {
+
+                }
+            }
+        }
+    }
 
       const shop = await shopModel.getShopInfo();   
       const social = await socialModel.getSocial();
       const service = await serviceModel.getService();
       const user = await userModel.getUserr(userid)
-        res.render('./dashboard/checkout', {shop:shop, social:social, service:service,cart:cart,user:user, account:account, idorder:idoder[0].id})
+      const crea=await couponModel.oderCoupon(id[0].id,idcoupon)
+      const datacoupon = await couponModel.Coupon(userid)       
+        res.render('./dashboard/checkout', {shop:shop, social:social, service:service,cart:cart,user:user, account:account, idorder:idoder[0].id, coupon:datacoupon})
 
     },
+   
    
     getProfile: async(req,res) => {
       const userid = parseInt(req.session.userId)

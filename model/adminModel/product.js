@@ -524,6 +524,7 @@ module.exports = {
         })
         return data;
      },
+    
   
     createlikeProduct: async(userid,genId) => {
         const data = await client.like_product.findMany({

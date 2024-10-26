@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+    .
+  </style>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>Donate Coupon</h3> 
+                 
+                </div>
+                
+                <form action="/admin/coupon/do" method="post">
+                    <div class="form-group">
+                        <label>Coupon</label>
+                        <button type="button" onclick="toggleDropdownCoupon()" id="dropdown-btn-coupon" style="width: 71px; height: 30px; margin-left: 328px; border: aqua;">Options</button>
+                        <div id="dropdown-content-coupon" class="dropdown-content" style="display:none;">
+                            <% for(var i=0; i < coupon.length; i++) { %>
+                                <label>
+                                    <input type="checkbox" name="coupon" value="<%= coupon[i].id %>">
+                                    <%= coupon[i].name %>
+                                </label>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>User</label>
+                        <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                        <div id="dropdown-content-user" class="dropdown-content" style="display:none;">
+                            <label><input type="checkbox" name="user" value="all">Tất cả khách
+                                hàng</label>
+                            <% for(var i=0; i < user.length; i++) { %>
+                                <label>
+                                  
+                                    <input type="checkbox" name="user" value="<%= user[i].id %>">
+                                    <%= user[i].lname %>
+                                </label>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 50px;">
+                        <button type="submit" class="btn btn-default btn-dark ">DONATE</button> 
+                        <button type="button" class="btn btn-dark btn-default">
+                            <a href="/admin/coupon" class="nav-link text-white">RETURN</a>
+                        </button>
+                    </div>
+                </form>
+                
+                
+                 
+            </div>
+        </div>
+    </div>
+   
+  </body>
+  <%- include('../../layout/admin/js'); -%>
+</html>

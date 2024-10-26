@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+            <div class="col-lg-9  ">
+                <div class="row text-center">
+                    <h3>View Coupon</h3> 
+                 
+                </div>
+                
+                <form action="/admin/coup/<%= couponDetail.id %>" method="post" >
+                    <div class="form-group">
+                     
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="<%= couponDetail.name %>" name="name">
+                        <label for="discount">Discount:</label>
+                        <input type="text" class="form-control" id="discount" value="<%= couponDetail.discount%>" name="discount">
+                        <label for="quantity">Quantity:</label>
+                        <input type="text" class="form-control" id="quantity" value="<%= couponDetail.quantity %>" name="quantity">
+                        <div class="form-group">
+                          <label>Classify:</label>
+                          <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                          <div id="dropdown-content-user" class="dropdown-content" style="display:none;" >
+                              <label><input type="checkbox" name="classify" value="<%= couponDetail.classify %>">Tất cả khách  hàng</label>
+                                 
+                              <% for(var i=0; i < classify.length; i++) { %>
+                                  <label>
+                                    
+                                      <input type="checkbox" name="classify" value="<%= couponDetail.classify %>">
+                                      <%=classify[i].name %>
+                                  </label>
+                              <% } %>
+                          </div>
+                      </div>
+                        <!-- <label for="classify">Classify:</label>
+                        <select type="text" class="form-control"  name="classify">
+                          <% for(var i=0; i< classify.length;i++){%>
+                              <option VALUE="<%=classify[i].id %>"><%=classify[i].name %></option>
+                          <%}%>
+                        </select> -->
+                        <label for="pricemin">Pricemin:</label>
+                        <input type="text" class="form-control" id="pricemin" value="<%= couponDetail.pricemin %>" name="pricemin">
+                        <label for="buymin">Buymin:</label>
+                        <input type="text" class="form-control" id="buymin" value="<%= couponDetail.buymin %>" name="buymin">
+                        <label for="acountmin">Accountmin:</label>
+                        <input type="text" class="form-control" id="acountmin" value="<%= couponDetail.acountmin %>" name="acountmin">
+                        <label for="acountbuymin">Accountbuymin:</label>
+                        <input type="text" class="form-control" id="acountbuymin" value="<%= couponDetail.acountbuymin %>" name="acountbuymin">
+                        
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                 
+                   
+                  </form>
+                  <a href="/admin/coupon"><button  class="btn btn-dark">Cancel</button></a> 
+                  </div>
+        </div>
+    </div>
+    
+  </body>
+  <%- include('../../layout/admin/js'); -%>
+</html>
