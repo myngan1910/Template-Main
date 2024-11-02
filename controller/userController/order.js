@@ -25,7 +25,6 @@ const orderModel = require('../../model/adminModel/order.js')
        const shop = await shopModel.getShopInfo();
         const social = await socialModel.getSocial();
         const order = await orderModel.getpageOrder(userid)
-        console.log(order)
         res.render('./dashboard/order',{shop:shop, social:social,cart:cart, account:account, order:order})
     }
  }

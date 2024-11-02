@@ -22,7 +22,7 @@ const commentRouter = require('../router/adminRouter/comment.js')
 const endowRouter = require('../router/adminRouter/endow.js')
 const proRouter = require('../router/adminRouter/promotion.js')
 const couponRouter = require('../router/adminRouter/coupon.js')
-
+const typerTouter = require('../router/adminRouter/type.js')
 
 router.get('/', adminController.getAdmin)
 router.use('/', productRouter)
@@ -46,6 +46,7 @@ router.use('/',reviewRouter);
 router.use('/',endowRouter);
 router.use('/',proRouter);
 router.use('/', couponRouter)
+router.use('/', typerTouter)
 
 
 

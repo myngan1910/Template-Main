@@ -28,6 +28,9 @@ module.exports = {
                 }
               }
                
+            },
+            orderBy: {
+                id : 'asc'
             }
         });
      
@@ -104,12 +107,14 @@ module.exports = {
       const dele1 = await client.blogs.deleteMany({where: {userid:genId}});
       const dele2 = await client.reviews.deleteMany({where: {userid:genId}});
       const dele3 = await client.orders.deleteMany({where: {userrid:genId}});
+      const dele5 = await client.user_coupon.deleteMany({where: {userid:genId}});
+      const dele6 = await client.user_product.deleteMany({where: {userid:genId}});
       const dele4 = await client.users.deleteMany({where: {id:genId}});
       
-       return {data,dele1,dele2,dele3,dele4};
+       return {data,dele1,dele2,dele3,dele4,dele5,dele6};
     
     },
-    postUser: async(genId,avata,fname,lname,mail,phone,add1,add2,pass,pos,state,con,com,role) => {
+    postUser: async(genId,avata,fname,lname,mail,phone,add1,add2,pos,state,con,com,role) => {
     const update = await client.users.update({
         where: {id:genId},
         data: {
@@ -120,7 +125,7 @@ module.exports = {
             phone: phone,
             address1: add1,
             address2: add2,
-            pass: pass,
+           
             postal: pos,
             state: state,
             contry: con,
@@ -132,6 +137,8 @@ module.exports = {
     
     },  
     postProfile: async(userid,avata,fname,lname,mail,phone,add1,add2,pass,pos,state,con,com,role) => {
+        
+       
         const update = await client.users.update({
             where: {id:userid},
             data: {
@@ -150,6 +157,7 @@ module.exports = {
                 roleid: role
             }
         })
+
         return update;
         
         },  

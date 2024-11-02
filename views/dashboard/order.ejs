@@ -57,7 +57,7 @@
 							<% for(var i=0; i < order.length; i++){%>
 								<% for(var j=0; j < order[i].products.length; j++){%>
 							<tr>
-								<td class="image" data-title="No"><img src="<%= order[i].products[j].product.image[i].image%>" alt="#"></td>
+								<td class="image" data-title="No"><img src="<%= order[i].products[j].product.image[0].image%>" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href=""><%= order[i].products[j].product.name%></a></p>
 								</td>

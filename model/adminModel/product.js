@@ -255,8 +255,10 @@ module.exports = {
       const dele1 = await client.image_product.deleteMany({where: {productid:genId}});
       const dele2 = await client.size_product.deleteMany({where: {productid:genId}});
       const dele3 = await client.order_product.deleteMany({where: {productid:genId}});
+      const dele5 = await client.coupon_product.deleteMany({where: {productid:genId}});
+
       const dele4 = await client.products.deleteMany({where: {id:genId}});
-       return {data,dele1,dele2,dele3,dele4};
+       return {data,dele1,dele2,dele3,dele4,dele5};
     
     },
     postProduct: async(genId,name,price,des,quant,clas,dis,ons,view,size, color) => {

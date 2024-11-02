@@ -27,7 +27,6 @@ module.exports = {
         const social = await socialModel.getSocial();
         const service = await serviceModel.getService();
         const datacoupon = await couponModel.userCoupon(userid)
-       console.log(datacoupon)
        
         res.render('./dashboard/cart',{shop:shop, social:social, service:service,cart:cart, account:account, coupon:datacoupon})
 

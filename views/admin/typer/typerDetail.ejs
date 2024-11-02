@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../../layout/admin/header'); -%>
+  <body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+          <%- include('../../layout/admin/sidebar'); -%>
+          <div class="col-lg-9  ">
+            <div class="row text-center">
+                <h2>View Typer</h2> 
+            </div>
+                <form action="/admin/typ/<%= typerDetail.id %>" method="post"  >
+                    <div class="form-group">
+                        <label for="name"> Name:</label>
+                        <input type="text" class="form-control" id="name" value="<%= typerDetail.name %>" name="name">
+                    </div>
+                    <div class="form-group">
+                      <label>User</label>
+                      <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                      <div id="dropdown-content-user" class="dropdown-content" style="display:none;">
+                          <label><input type="checkbox" name="user" value="all">Tất cả khách
+                              hàng</label>
+                          <% for(var i=0; i < user.length; i++) { %>
+                              <label>
+                                
+                                  <input type="checkbox" name="user" value="<%= user[i].id %>">
+                                  <%= user[i].lname %>
+                              </label>
+                          <% } %>
+                      </div>
+                  </div>
+
+                    <button type="submit" class="btn btn-dark">Edit</button>
+                    <a href="/admin/typer"><button  class="btn btn-dark">Cancel</button></a> 
+                </form>
+            </div>
+         
+        </div>
+    </div>
+    
+  </body>
+  <%- include('../../layout/admin/js'); -%>
+
+</html>

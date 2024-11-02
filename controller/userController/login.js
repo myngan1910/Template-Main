@@ -37,7 +37,7 @@ module.exports = {
         const pass = bcrypt.hashSync(pass1,5)
         const user = await loginModel.checkLogin(mail)
 
-        const checkpass = await bcrypt.compare(pass1,user[0].pass)
+        const checkpass = bcrypt.compare(pass1, user[0].pass)
         
       if(user.length != 0  && checkpass){
         req.session.userId = user[0].id;

@@ -18,9 +18,17 @@
                     <input type="text" class="form-control" id="name" value="" name="name">
                     <!-- <label for="discount">Discount:</label>
                     <input type="text" class="form-control" id="discount" value="" name="discount"> -->
-                    <label for="quantity">Quantity:</label>
+                    <!-- <label for="action">Action:</label>
+                    <input type="text" class="form-control" id="action" value="" name="action"> -->
+                     <label for="quantity">Quantity:</label>
                     <input type="text" class="form-control" id="quantity" value="" name="quantity">
-                    <div class="form-group">
+                    <label for="classify">Classify:</label>
+                    <select type="text" class="form-control"  name="classify">
+                      <% for(var i=0; i< classify.length;i++){%>
+                          <option VALUE="<%=classify[i].id %>"><%=classify[i].name %></option>
+                      <%}%>
+                    </select>
+                    <!-- <div class="form-group">
                       <label>Classify:</label>
                       <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
                       <div id="dropdown-content-user" class="dropdown-content" style="display:none;">
@@ -34,8 +42,8 @@
                               </label>
                           <% } %>
                       </div>
-                  </div>
-                   
+                  </div>  -->
+                
                     <label for="pricemin">Pricemin:</label>
                     <input type="text" class="form-control" id="pricemin" value="" name="pricemin">
                     <label for="buymin">Buymin:</label>

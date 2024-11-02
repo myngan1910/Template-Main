@@ -21,6 +21,36 @@
                         <label for="quantity">Quantity:</label>
                         <input type="text" class="form-control" id="quantity" value="<%= couponDetail.quantity %>" name="quantity">
                         <div class="form-group">
+                          <label>User</label>
+                          <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                          <div id="dropdown-content-user" class="dropdown-content" style="display:none;">
+                              <label><input type="checkbox" name="user" value="all">Tất cả khách
+                                  hàng</label>
+                              <% for(var i=0; i < user.length; i++) { %>
+                                  <label>
+                                    
+                                      <input type="checkbox" name="user" value="<%= user[i].id %>">
+                                      <%= user[i].lname %>
+                                  </label>
+                              <% } %>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Typer</label>
+                        <button type="button" onclick="toggleDropdownTyper()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
+                        <div id="dropdown-content-typer" class="dropdown-content" style="display:none;">
+                            <label><input type="checkbox" name="typer" value="all">Tất cả khách
+                                hàng</label>
+                            <% for(var i=0; i < typer.length; i++) { %>
+                                <label>
+                                  
+                                    <input type="checkbox" name="typer" value="<%= typer[i].id %>">
+                                    <%= typer[i].name %>
+                                </label>
+                            <% } %>
+                        </div>
+                    </div>
+                        <!-- <div class="form-group">
                           <label>Classify:</label>
                           <button type="button" onclick="toggleDropdownUser()" id="dropdown-btn-user" style="width: 71px; height: 30px; margin-left: 353px; border: aqua;">Options</button>
                           <div id="dropdown-content-user" class="dropdown-content" style="display:none;" >
@@ -34,13 +64,15 @@
                                   </label>
                               <% } %>
                           </div>
-                      </div>
-                        <!-- <label for="classify">Classify:</label>
+                      </div> -->
+                      <!-- <label for="action">Action:</label>
+                    <input type="text" class="form-control" id="action" value="<%= couponDetail.action %>" name="action"> -->
+                        <label for="classify">Classify:</label>
                         <select type="text" class="form-control"  name="classify">
                           <% for(var i=0; i< classify.length;i++){%>
                               <option VALUE="<%=classify[i].id %>"><%=classify[i].name %></option>
                           <%}%>
-                        </select> -->
+                        </select>
                         <label for="pricemin">Pricemin:</label>
                         <input type="text" class="form-control" id="pricemin" value="<%= couponDetail.pricemin %>" name="pricemin">
                         <label for="buymin">Buymin:</label>

@@ -77,6 +77,7 @@ model users {
    usercart user_product[]
    user like_product[]
    coupon user_coupon[]
+   typer type_user[]
 }
 
 model comments {
@@ -296,6 +297,7 @@ model coupon {
     userclass class_coupon[]
      product coupon_product[]
      oder coupon_oder[]
+     typer type_coupon[]
 
 }
 model coupon_oder{
@@ -319,8 +321,6 @@ model class_coupon {
    classid Int
    coupon coupon @relation (fields: [couponid], references: [id])
    couponid Int
-   
- 
 }
 
 model user_coupon {
@@ -329,7 +329,27 @@ model user_coupon {
    userid Int
    coupon coupon @relation (fields: [couponid], references: [id])
    couponid Int
-   quantity Int
-   
- 
+}
+
+model typer {
+    id Int  @id @default(autoincrement())
+    name String?
+    user type_user[]
+    coupon type_coupon[]
+}
+
+model type_user {
+   id Int  @id @default(autoincrement())
+   user users @relation(fields: [userid], references: [id])
+   userid Int
+   typer  typer @relation (fields: [typerid], references: [id])
+   typerid Int
+}
+
+model type_coupon {
+   id Int  @id @default(autoincrement())
+   typer typer @relation(fields: [typerid], references: [id])
+   typerid Int
+   coupon coupon @relation (fields: [couponid], references: [id])
+   couponid Int
 }

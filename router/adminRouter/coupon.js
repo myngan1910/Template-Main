@@ -9,6 +9,6 @@ router.post('/createcou', couponController.postCreateCoupon);
 router.get('/cou/:ID',couponController.getdetailCoupon);
 router.get('/coudele/:ID',couponController.getdeleCoupon);
 router.post('/coup/:ID', couponController.postCoupon);
-router.get('/coupon/donate', couponController.getDonate)
-router.post('/coupon/do', couponController.postDonate)
+router.get('/coupon/activate/:ID', couponController.getActivate)
+router.get('/coupon/deactivate/:ID', couponController.getDeactivate)
  module.exports = router;

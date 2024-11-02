@@ -15,7 +15,6 @@ module.exports = {
       const idproduct = req.body.product;
  
       const id = await productModel.getOrder(userid)
-      const quant = req.body.quant;
       const quanlity =  []
       let cart
       let account = 0;
@@ -118,6 +117,7 @@ module.exports = {
        const avata =  currentUser.avata;
       const pass =  currentUser.pass;
       const role =  currentUser.roleid;
+      const coupon = await couponModel.getUpdate(userid)
       const viewPro =  await  userModel.postProfile(userid,avata,fname,lname,mail,phone,add1,add2,pass,pos,state,con,com,role)
       const update = await userModel.getOrder(idorder,userid)
       return res.redirect(`/profile`)

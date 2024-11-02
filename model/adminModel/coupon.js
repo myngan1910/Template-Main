@@ -4,18 +4,50 @@ const client = new PrismaClient();
 
 module.exports = {
     getCoupon: async() => {
-        const data = await client.coupon.findMany();
+        const data = await client.coupon.findMany({
+            orderBy: {
+                id : 'asc'
+            }
+        });
         return data;
     },
-    userCoupon: async(userid) => {
-       const data = await client.user_coupon.findMany({
-        where: {userid: userid},
-        include: {
-            coupon: {}
-        }
-       })
-    
-       return data;
+    // userCoupon: async (userid) => {
+    //     const data = await client.user_coupon.findMany({
+    //         where: {
+    //             userid: userid,
+    //             coupon: {
+    //                 action: 1
+    //             }
+    //         },
+    //         include: {
+    //             coupon: {}
+               
+    //         }
+    //     });
+    //     return data;
+    // },
+    userCoupon: async (userid) => {
+        const data = await client.coupon.findMany({
+            where: {
+                action: 1,
+                typer: {
+                    some: {
+                        typer: {
+                            user: {
+                                some: {
+                                    userid: userid
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            include: {
+                typer: true,
+                userclass: true,
+            }
+        });
+        return data;
     },
     getCouponn: async(idproduct,account) => {
        
@@ -29,11 +61,10 @@ module.exports = {
         
         if (user != undefined && coupon != undefined) {
             for (var i = 0; i < user.length; i++) {
-                for (var j = 0; j < coupon.length; j++) {
                     const coupons = await client.user_coupon.findMany({
                         where: {
                             userid: parseInt(user[i]),
-                            couponid: parseInt(coupon[j])
+                            couponid: parseInt(coupon)
                         }
                     });
     
@@ -42,20 +73,22 @@ module.exports = {
                         const data = await client.user_coupon.update({
                             where: { id: coupons[0].id },
                             data: {
-                                quantity: coupons[0].quantity + 1 
+                                userid: parseInt(user[i]),
+                                couponid: parseInt(coupon),
                             }
                         });
                     } else {
                        
                         const data = await client.user_coupon.create({
                             data: {
-                                userid: user[i],
-                                couponid: parseInt(coupon[j]),
-                                quantity: 1 
+                                userid: parseInt(user[i]),
+                                couponid: parseInt(coupon),
+                               
                             }
                         });
                     }
-                        const coupon2 = await client.coupon.findMany({ where: { id: parseInt(coupon[j]) } })
+                   
+                        const coupon2 = await client.coupon.findMany({ where: { id: parseInt(coupon) } })
                         const data2 = await client.coupon.update({
                             where: { id: coupon2[0].id}, 
                             data: {
@@ -69,11 +102,46 @@ module.exports = {
          
           
             
-        } 
+        
     },
     
            
-     
+     postTyper: async(typer,coupon) => {
+        if ( typer != undefined && coupon != undefined) {
+            for (var i = 0; i < typer.length; i++) {
+                    const coupons = await client.type_coupon.findMany({
+                        where: {
+                            typerid: parseInt(typer[i]),
+                            couponid: parseInt(coupon)
+                        }
+                    });
+    
+                    
+                    if (coupons.length > 0) {
+                        const data = await client.type_coupon.update({
+                            where: { id: coupons[0].id },
+                            data: {
+                                typerid: parseInt(typer[i]),
+                                couponid: parseInt(coupon),
+                            }
+                        });
+                    } else {
+                       
+                        const data = await client.type_coupon.create({
+                            data: {
+                                typerid: parseInt(typer[i]),
+                                couponid: parseInt(coupon),
+                               
+                            }
+                        });
+                    }
+                   
+                       
+                    
+                }
+            }
+
+     },
     
 
   
@@ -97,7 +165,7 @@ module.exports = {
   },
   
 
-    postCreateCoupon: async(name,dis,quant,price,buy,accmin,accbuy,clas,action) => {
+    postCreateCoupon: async(name,dis,quant,price,buy,accmin,accbuy,clas) => {
         const data = await client.coupon.create({
             data: {
                 name:name,
@@ -107,8 +175,9 @@ module.exports = {
                 buymin: buy,
                 acountmin: accmin,
                 acountbuymin: accbuy,
-                coupon:JSON.stringify(clas),
-                action: action
+                // coupon:JSON.stringify(clas),
+                coupon:clas,
+                action: 0
                 
             }
         })
@@ -126,11 +195,27 @@ module.exports = {
         
         const data = await client.class_coupon.deleteMany({
             where: {
-                classid: genId
+                couponid: genId
             }
         });
+        const data2 = await client.user_coupon.deleteMany({
+            where: {
+                couponid: genId
+            }
+        });
+        const data1 = await client.coupon_oder.deleteMany({
+            where: {
+                couponid: genId
+            }
+        });
+        const data3 = await client.coupon_product.deleteMany({
+            where: {
+                couponid: genId
+            }
+        });
+        const dele2 = await client.type_coupon.deleteMany({where: {couponid: genId}})
         const dele1 = await client.coupon.deleteMany({where: {id:genId}});
-        return {data,dele1};
+        return {data,dele1,data2,data1,data3, dele2};
     },
     postCoupon: async(genId,name,dis,quant,price,buy,accmin,accbuy,clas,action) => {
         const update = await client.coupon.update({
@@ -143,7 +228,8 @@ module.exports = {
                 buymin: buy,
                 acountmin: accmin,
                 acountbuymin: accbuy,
-                coupon: JSON.stringify(clas),
+                // coupon: JSON.stringify(clas),
+                coupon:clas,
                 action: action
             }
         })
@@ -172,5 +258,33 @@ module.exports = {
             });
           }
         },
+
+        getActivate: async(couponId) => {
+            const data = await client.coupon.update({
+                where: { id: couponId },
+                data: { action: 1 },
+            });
+            return data;
+        },
+        getDeactivate: async(couponId) => {
+            const data = await client.coupon.update({
+                where: { id: couponId },
+                data: { action: 0 },
+            });
+            return data;
+        },
+        getUpdate: async(userid) => {
+            const coupon = await client.coupon.findUnique({
+                where: { id: userid },
+                select: { quantity: true } 
+            });
         
-}
+            if (coupon && coupon.quantity > 0) {
+                const data = await client.coupon.update({
+                    where: { id: userid },
+                    data: { quantity:String(parseInt(coupon.quantity) - 1) }
+                });
+                return data;
+            } 
+        
+}}

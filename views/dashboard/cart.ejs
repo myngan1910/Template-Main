@@ -106,17 +106,14 @@
 								<h6>SHIPPING CODE</h6>
 				<table>
 					<tbody>
-						<form action="#" target="_blank">
-							<input name="Coupon" placeholder="Enter Your Coupon">
-							<button class="btn">Apply</button>
-						</form>
+						
 						<% for (var i = 0; i < coupon.length; i++) { %>
 						  <tr>
 							<td style="padding:-18px">
-							  <input type="radio" name="coupon" value="<%= coupon[i].coupon.id %>">
+							  <input type="radio" name="coupon" value="<%= coupon[i].id %>">
 							</td>
 							<td>
-							  <%= coupon[i].coupon.name %>
+							  <%= coupon[i].name %>
 							</td>
 						  </tr>
 						<% } %>

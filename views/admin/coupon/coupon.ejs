@@ -17,6 +17,7 @@
                           <th>Discount</th>
                           <th>Quantity</th>
                           <th>Coupon</th>
+                          
                           <th>Action</th>
                           <th>Pricemin</th>
                           <th>Buymin</th>
@@ -34,7 +35,15 @@
                           <td><%= data[i].discount %></td>
                           <td><%= data[i].quantity %></td>
                           <td><%= data[i].coupon %></td>
-                          <td><%= data[i].action %></td>
+                          
+                         
+                          <td>
+                            <% if (data[i].action === 1) { %>
+                                <a href="/admin/coupon/deactivate/<%= data[i].id %>" class="btn ">Bật</a>
+                            <% } else { %>
+                                <a href="/admin/coupon/activate/<%= data[i].id %>" class="btn ">Tắt</a>
+                            <% } %>
+                        </td>
                           <td><%= data[i].pricemin %></td>
                           <td><%= data[i].buymin %></td>
                           <td><%= data[i].acountmin %></td>
@@ -52,7 +61,6 @@
           
                 </div>
                 <a href="/admin/create-cou" class="btn btn-dark">Create</a>
-                <a href="/admin/coupon/donate" class="btn btn-dark">Donate</a>
             </div>
             
           </div>
