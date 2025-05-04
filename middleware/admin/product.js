@@ -5,7 +5,7 @@ module.exports = {
     checkName:async(req,res,next)=>{
         const name=req.body.name;
         const data=await productModel.checkname(name);
-        if(data.length == 0){
+        if(!data || data.length === 0){
             next();
         }else{
             const data= await  productModel.getProduct();
