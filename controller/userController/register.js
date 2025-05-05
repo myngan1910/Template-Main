@@ -43,7 +43,7 @@ module.exports = {
          const state = '';
          const con = '';
          const com = '';
-        const role = 2;
+        const role = 1;
         const  User = await registerModel.postCreateUser(avata,fname,lname,mail,phone,add1,add2,pass,pos,state,con,com,role)
         res.redirect('/register')
     }
